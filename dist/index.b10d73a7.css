@@ -56,7 +56,62 @@ input, button, textarea, select {
 }
 
 body {
+  background-color: #001524;
   font-family: Open Sans, sans-serif;
+}
+
+header {
+  margin: 2rem;
+}
+
+header .trending {
+  color: #fefefe;
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+}
+
+header .trending .trendingItem {
+  margin-block: 1rem;
+}
+
+header .trending .trendingItem img {
+  width: 50%;
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px #00000059;
+}
+
+header .trending .trendingItem h2 {
+  text-align: center;
+}
+
+header .formContainer {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  display: flex;
+}
+
+header .formContainer .searchInput {
+  width: 100vw;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+header .formContainer .searchBtn {
+  width: 100vw;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  background-color: #ffc300;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

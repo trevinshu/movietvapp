@@ -5,6 +5,67 @@
 //Google Font
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&display=swap');
 
+//Color Variables
+$primaryColor: #001524;
+$secondaryColor: #ffc300;
+
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: $primaryColor;
+}
+
+header {
+  margin: 2rem;
+  .trending {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // overflow: auto;
+    // scroll-snap-type: x mandatory;
+    color: #fefefe;
+
+    .trendingItem {
+      margin-block: 1rem;
+      //   flex: 0 0 100%;
+      //   scroll-snap-align: start;
+
+      img {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: 0 auto;
+        width: 50%;
+      }
+
+      h2 {
+        text-align: center;
+      }
+    }
+  }
+  .formContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .searchInput {
+      width: 100vw;
+      padding: 1rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .searchBtn {
+      background-color: $secondaryColor;
+      width: 100vw;
+      padding: 1rem;
+      border-radius: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 5px;
+      font-size: 1.5rem;
+      border: none;
+    }
+  }
 }

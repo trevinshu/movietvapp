@@ -505,25 +505,40 @@ function hmrAcceptRun(bundle, id) {
 },{}],"dV6cC":[function(require,module,exports) {
 require("dotenv").config();
 const apiKey = "5dba95e581584ef61f28fcb8642f6a9a";
-//Selectors
+//Get Trending Container
+const trendingContainer = document.getElementById("trending");
 async function getTrendingMovies() {
-    const trendingContainer = document.getElementById("trending");
     let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="trendingItem">
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy"/>
-            <h2>${item.title ? item.title : item.name}</h2>
+        <div class="trendingItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
         trendingContainer.innerHTML = html;
     });
-    console.log(trendingContainer);
 }
 getTrendingMovies();
+function carousel() {
+    let leftBtn = document.getElementById("leftButton");
+    let rightBtn = document.getElementById("rightButton");
+    leftBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        trendingContainer.scrollLeft -= window.outerWidth;
+    });
+    rightBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        trendingContainer.scrollLeft += window.outerWidth;
+    // if (Math.abs(trendingContainer.scrollLeft) === trendingContainer.scrollWidth - trendingContainer.clientWidth) {
+    //   rightBtn.remove();
+    // }
+    });
+}
+carousel();
 
 },{"dotenv":"lErsX"}],"lErsX":[function(require,module,exports) {
 var process = require("process");

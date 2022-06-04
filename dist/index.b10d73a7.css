@@ -56,62 +56,91 @@ input, button, textarea, select {
 }
 
 body {
+  color: #fefefe;
   background-color: #001524;
   font-family: Open Sans, sans-serif;
 }
 
-header {
-  margin: 2rem;
-}
-
-header .trending {
-  color: #fefefe;
-  grid-template-columns: repeat(2, 1fr);
-  display: grid;
-}
-
-header .trending .trendingItem {
-  margin-block: 1rem;
-}
-
-header .trending .trendingItem img {
-  width: 50%;
-  border-radius: 10px;
-  margin: 0 auto;
-  box-shadow: 0 5px 15px #00000059;
-}
-
-header .trending .trendingItem h2 {
-  text-align: center;
-}
-
-header .formContainer {
-  flex-wrap: wrap;
+header .navContainer {
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   margin-top: 1rem;
   display: flex;
 }
 
-header .formContainer .searchInput {
-  width: 100vw;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  padding: 1rem;
+header .navContainer .formContainer {
+  width: 100%;
+  margin-inline: 1rem;
+  display: flex;
 }
 
-header .formContainer .searchBtn {
-  width: 100vw;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+header .navContainer .formContainer .searchInput {
+  width: 100%;
+  border: none;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  outline: none;
+  margin-right: 0;
+  padding: .5rem 1rem;
+}
+
+header .navContainer .formContainer .searchBtn {
+  width: 15vh;
+  color: #001524;
+  cursor: pointer;
   background-color: #ffc300;
   border: none;
-  border-radius: 10px;
-  padding: 1rem;
-  font-size: 1.5rem;
-  font-weight: 700;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  outline: none;
+  margin: 0;
+}
+
+header .trending {
+  scroll-snap-type: x mandatory;
+  gap: .75rem;
+  margin: 1rem;
+  display: flex;
+  overflow: hidden;
+}
+
+header .trending .trendingItem {
+  scroll-snap-align: start;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 100%;
+  padding-top: 1rem;
+}
+
+header .trending .trendingItem img {
+  max-width: 100%;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+header .trending .trendingItem h4 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+header .trending .trendingItem:hover {
+  transition: transform .5ms ease-in;
+  transform: scale(1);
+}
+
+.btnContainer {
+  justify-content: center;
+  gap: 5rem;
+  display: flex;
+}
+
+.btnContainer .leftButton, .btnContainer .rightButton {
+  color: #fefefe;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 0;
 }
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

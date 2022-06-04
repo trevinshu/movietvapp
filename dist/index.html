@@ -10,12 +10,18 @@
     <title>Movies & TV App</title>
   </head>
   <body>
-    <header>
+    <header class="headerContainer">
+      <nav class="navContainer">
+        <form id="formContainer" class="formContainer">
+          <input type="text" class="searchInput" id="searchInput" placeholder="Ex. Stranger Things">
+          <button class="searchBtn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </nav>
       <div class="trending" id="trending"></div>
-      <form id="formContainer" class="formContainer">
-        <input type="text" class="searchInput" placeholder="Ex. Stranger Things">
-        <button class="searchBtn" id="searchBtn">Search</button>
-      </form>
+      <div class="btnContainer">
+        <button id="leftButton" class="leftButton"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="rightButton" class="rightButton"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
     </header>
   </body>
 </html>

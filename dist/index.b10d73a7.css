@@ -96,10 +96,23 @@ header .navContainer .formContainer .searchBtn {
   margin: 0;
 }
 
+header .trendHeading {
+  justify-content: space-between;
+  margin: 1rem;
+  padding-top: .5rem;
+  display: flex;
+}
+
+header .trendHeading h2 {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
+
 header .trending {
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin: 1rem;
+  margin-inline: 1rem;
   display: flex;
   overflow: hidden;
 }
@@ -109,7 +122,6 @@ header .trending .trendingItem {
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
-  padding-top: 1rem;
 }
 
 header .trending .trendingItem img {
@@ -120,7 +132,10 @@ header .trending .trendingItem img {
 
 header .trending .trendingItem h4 {
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
   padding-top: 1rem;
+  font-weight: 400;
 }
 
 header .trending .trendingItem:hover {
@@ -128,19 +143,16 @@ header .trending .trendingItem:hover {
   transform: scale(1);
 }
 
-.btnContainer {
-  justify-content: center;
-  gap: 5rem;
-  display: flex;
-}
-
 .btnContainer .leftButton, .btnContainer .rightButton {
   color: #fefefe;
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 2.5rem;
-  line-height: 0;
+  font-size: 1.5rem;
+}
+
+main {
+  height: 100vh;
 }
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

@@ -523,6 +523,7 @@ async function getTrendingMovies() {
     });
 }
 getTrendingMovies();
+//Content Carousel
 function carousel() {
     let leftBtn = document.getElementById("leftButton");
     let rightBtn = document.getElementById("rightButton");

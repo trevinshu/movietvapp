@@ -19,9 +19,9 @@ async function getTrendingMovies() {
     trendingContainer.innerHTML = html;
   });
 }
-
 getTrendingMovies();
 
+//Content Carousel
 function carousel() {
   let leftBtn = document.getElementById('leftButton');
   let rightBtn = document.getElementById('rightButton');
@@ -40,5 +40,4 @@ function carousel() {
     // }
   });
 }
-
 carousel();

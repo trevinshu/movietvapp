@@ -18,8 +18,6 @@
     "process": "^0.11.10"
   },
   "alias": {
-    "process": {
-      "global": "{}"
-    }
+    "process": false
   }
 }

@@ -183,4 +183,35 @@ main {
   font-weight: 400;
 }
 
+.tvItemsContainer {
+  margin-inline: 1rem;
+  scroll-snap-type: x mandatory;
+  gap: .75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.tvItemsContainer .tvItem {
+  scroll-snap-align: start;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 100%;
+}
+
+.tvItemsContainer .tvItem img {
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+.tvItemsContainer .tvItem h4 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding-top: 1rem;
+  font-weight: 400;
+}
+
 /*# sourceMappingURL=index.b10d73a7.css.map */

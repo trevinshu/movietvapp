@@ -1,7 +1,7 @@
 require('dotenv').config();
 const apiKey = process.env.API_KEY;
 
-//Get Trending Container
+//Get Containers
 const trendingContainer = document.getElementById('trending');
 const actionMovies = document.getElementById('actionMovies');
 const comedyMovies = document.getElementById('comedyMovies');
@@ -9,6 +9,7 @@ const horrorMovies = document.getElementById('horrorMovies');
 const romanceMovies = document.getElementById('romanceMovies');
 const thrillerMovies = document.getElementById('thrillerMovies');
 
+//Get Trending Movies
 async function getTrendingMovies() {
   let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
   let data = await response.json();
@@ -28,17 +29,18 @@ async function getTrendingMovies() {
 }
 getTrendingMovies();
 
-trendingContainer.addEventListener('click', viewSelectedItem);
-function viewSelectedItem(e) {
-  const imgBtn = e.target.parentElement.parentElement;
+// trendingContainer.addEventListener('click', viewSelectedItem);
+// function viewSelectedItem(e) {
+//   const imgBtn = e.target.parentElement.parentElement;
 
-  if (imgBtn.dataset.type === 'tv') {
-    console.log(`tv selected ${imgBtn.dataset.id}`);
-  } else {
-    console.log(`movie selected ${imgBtn.dataset.id}`);
-  }
-  e.preventDefault();
-}
+//   if (imgBtn.dataset.type === 'tv') {
+//     console.log(`tv selected ${imgBtn.dataset.id}`);
+//   } else {
+//     console.log(`movie selected ${imgBtn.dataset.id}`);
+//   }
+//   e.preventDefault();
+// }
+
 //Get Action Movies
 async function getActionMovies() {
   let response = await fetch(
@@ -191,19 +193,5 @@ function carousel() {
       }
     })
   );
-
-  // leftBtn.addEventListener('click', function (e) {
-  //   e.preventDefault();
-  //   actionMovies.scrollLeft -= window.outerWidth;
-  // });
-
-  // rightBtn.addEventListener('click', function (e) {
-  //   e.preventDefault();
-  //   actionMovies.scrollLeft += window.outerWidth;
-
-  //   // if (Math.abs(trendingContainer.scrollLeft) === trendingContainer.scrollWidth - trendingContainer.clientWidth) {
-  //   //   rightBtn.remove();
-  //   // }
-  // });
 }
 carousel();

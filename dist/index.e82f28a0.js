@@ -505,13 +505,14 @@ function hmrAcceptRun(bundle, id) {
 },{}],"dV6cC":[function(require,module,exports) {
 require("dotenv").config();
 const apiKey = "5dba95e581584ef61f28fcb8642f6a9a";
-//Get Trending Container
+//Get Containers
 const trendingContainer = document.getElementById("trending");
 const actionMovies = document.getElementById("actionMovies");
 const comedyMovies = document.getElementById("comedyMovies");
 const horrorMovies = document.getElementById("horrorMovies");
 const romanceMovies = document.getElementById("romanceMovies");
 const thrillerMovies = document.getElementById("thrillerMovies");
+//Get Trending Movies
 async function getTrendingMovies() {
     let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
     let data = await response.json();
@@ -530,13 +531,16 @@ async function getTrendingMovies() {
     });
 }
 getTrendingMovies();
-trendingContainer.addEventListener("click", viewSelectedItem);
-function viewSelectedItem(e) {
-    const imgBtn = e.target.parentElement.parentElement;
-    if (imgBtn.dataset.type === "tv") console.log(`tv selected ${imgBtn.dataset.id}`);
-    else console.log(`movie selected ${imgBtn.dataset.id}`);
-    e.preventDefault();
-}
+// trendingContainer.addEventListener('click', viewSelectedItem);
+// function viewSelectedItem(e) {
+//   const imgBtn = e.target.parentElement.parentElement;
+//   if (imgBtn.dataset.type === 'tv') {
+//     console.log(`tv selected ${imgBtn.dataset.id}`);
+//   } else {
+//     console.log(`movie selected ${imgBtn.dataset.id}`);
+//   }
+//   e.preventDefault();
+// }
 //Get Action Movies
 async function getActionMovies() {
     let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);
@@ -669,17 +673,6 @@ function carousel() {
                 thrillerMovies.scrollLeft += window.outerWidth;
             }
         }));
-// leftBtn.addEventListener('click', function (e) {
-//   e.preventDefault();
-//   actionMovies.scrollLeft -= window.outerWidth;
-// });
-// rightBtn.addEventListener('click', function (e) {
-//   e.preventDefault();
-//   actionMovies.scrollLeft += window.outerWidth;
-//   // if (Math.abs(trendingContainer.scrollLeft) === trendingContainer.scrollWidth - trendingContainer.clientWidth) {
-//   //   rightBtn.remove();
-//   // }
-// });
 }
 carousel();
 

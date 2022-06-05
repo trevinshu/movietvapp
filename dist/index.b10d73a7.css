@@ -85,7 +85,7 @@ header .navContainer .formContainer .searchInput {
 }
 
 header .navContainer .formContainer .searchBtn {
-  width: 15vh;
+  width: 10vh;
   color: #001524;
   cursor: pointer;
   background-color: #ffc300;
@@ -96,23 +96,11 @@ header .navContainer .formContainer .searchBtn {
   margin: 0;
 }
 
-header .trendHeading {
-  justify-content: space-between;
-  margin: 1rem;
-  padding-top: .5rem;
-  display: flex;
-}
-
-header .trendHeading h2 {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 400;
-}
-
 header .trending {
+  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-inline: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   overflow: hidden;
 }
@@ -126,6 +114,7 @@ header .trending .trendingItem {
 
 header .trending .trendingItem img {
   max-width: 100%;
+  cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
@@ -138,12 +127,20 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
-header .trending .trendingItem:hover {
-  transition: transform .5ms ease-in;
-  transform: scale(1);
+.headingContainer {
+  justify-content: space-between;
+  margin: 1rem;
+  padding-top: .5rem;
+  display: flex;
 }
 
-.btnContainer .leftButton, .btnContainer .rightButton {
+.headingContainer h2 {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
+
+.headingContainer .btnContainer .leftButton, .headingContainer .btnContainer .rightButton {
   color: #fefefe;
   cursor: pointer;
   background: none;
@@ -153,6 +150,37 @@ header .trending .trendingItem:hover {
 
 main {
   height: 100vh;
+}
+
+.movieItemsContainer {
+  margin-inline: 1rem;
+  scroll-snap-type: x mandatory;
+  gap: .75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.movieItemsContainer .movieItem {
+  scroll-snap-align: start;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 100%;
+}
+
+.movieItemsContainer .movieItem img {
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+.movieItemsContainer .movieItem h4 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding-top: 1rem;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

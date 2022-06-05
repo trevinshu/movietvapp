@@ -40,7 +40,7 @@ header {
 
       .searchBtn {
         margin: 0;
-        width: 15vh;
+        width: 10vh;
         border-top-right-radius: 1rem;
         border-bottom-right-radius: 1rem;
         background-color: $secondaryColor;
@@ -51,24 +51,11 @@ header {
       }
     }
   }
-
-  //Heading For Trending Container
-  .trendHeading {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem;
-    padding-top: 0.5rem;
-
-    h2 {
-      text-transform: uppercase;
-      font-weight: 400;
-      letter-spacing: 4px;
-    }
-  }
   //Trending Container Styles
   .trending {
     display: flex;
     margin-inline: 1rem;
+    margin-bottom: 1rem;
     gap: 0.75rem;
     scroll-snap-type: x mandatory;
     overflow: hidden;
@@ -83,6 +70,7 @@ header {
         border-radius: 1rem;
         max-width: 100%;
         margin: 0 auto;
+        cursor: pointer;
       }
 
       h4 {
@@ -93,30 +81,32 @@ header {
         padding-top: 1rem;
       }
     }
-
-    .trendingItem:hover {
-      transform: scale(1);
-      transition: transform ease-in 0.5ms;
-    }
   }
 }
 
-//Nav Button Styles
-.btnContainer {
-  .leftButton {
-    background: none;
-    border: none;
-    color: $otherColor;
-    cursor: pointer;
-    font-size: 1.5rem;
+//Heading For Trending Container
+.headingContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-top: 0.5rem;
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 4px;
   }
 
-  .rightButton {
-    background: none;
-    border: none;
-    color: $otherColor;
-    cursor: pointer;
-    font-size: 1.5rem;
+  //Nav Button Styles
+  .btnContainer {
+    .leftButton,
+    .rightButton {
+      background: none;
+      border: none;
+      color: $otherColor;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -124,30 +114,60 @@ main {
   height: 100vh;
 }
 
+.movieItemsContainer {
+  display: flex;
+  margin-inline: 1rem;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+  scroll-snap-type: x mandatory;
+  overflow: hidden;
+
+  .movieItem {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    max-width: 100%;
+    aspect-ratio: 16/9;
+
+    img {
+      border-radius: 1rem;
+      max-width: 100%;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    h4 {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 400;
+      padding-top: 1rem;
+    }
+  }
+}
+
 // @media only screen and (min-width: 900px) {
 //   header {
 //     .trending {
 //       display: flex;
 //       margin: 2rem 1rem;
-//       gap: 1rem;
 //       scroll-snap-type: x mandatory;
 //       scroll-padding: 0;
 //       overflow: hidden;
 
 //       .trendingItem {
 //         scroll-snap-align: start;
-//         flex: 0 0 100%;
-//         max-width: 100%;
+//         flex: 0 0 25%;
+//         max-width: 25%;
 //         aspect-ratio: 16/9;
 //         padding: 0;
 
 //         &:last-of-type {
-//           padding-right: 1rem;
+//           // padding-right: 1rem;
 //         }
 
 //         img {
 //           border-radius: 1rem;
-//           max-width: 50%;
+//           max-width: 100%;
 //           margin: 0 auto;
 //         }
 

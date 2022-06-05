@@ -17,25 +17,78 @@
           <button class="searchBtn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
       </nav>
-      <div class="trendHeading">
+      <div class="headingContainer">
         <h2>Trending:</h2>
         <div class="btnContainer">
-          <button id="leftButton" class="leftButton"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton"><i class="fa-solid fa-chevron-right"></i></button>
+          <button id="leftButton" class="leftButton" data-button="trending left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="trending right"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
       </div>
       <div class="trending" id="trending"></div>
     </header>
   </body>
   <main class="container">
-    <div class="trendHeading">
-      <h2>Trending:</h2>
-      <div class="btnContainer">
-        <button id="leftButton" class="leftButton"><i class="fa-solid fa-chevron-left"></i></button>
-        <button id="rightButton" class="rightButton"><i class="fa-solid fa-chevron-right"></i></button>
+    <!--Action Movies Container-->
+    <div class="movieContainer">
+      <div class="headingContainer">
+        <h2>Action:</h2>
+        <div class="btnContainer">
+          <button id="leftButton" class="leftButton" data-button="action left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="action right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
       </div>
-  </div></main>
-  <footer>
+      <div class="movieItemsContainer" id="actionMovies"></div>
+    </div>
+
+    <!--Comedy Movies Container-->
+    <div class="movieContainer">
+      <div class="headingContainer">
+        <h2>Comedy:</h2>
+        <div class="btnContainer">
+          <button id="leftButton" class="leftButton" data-button="comedy left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="comedy right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="movieItemsContainer" id="comedyMovies"></div>
+    </div>
+
+    <!--Horror Movies Container-->
+    <div class="movieContainer">
+      <div class="headingContainer">
+        <h2>Horror:</h2>
+        <div class="btnContainer">
+          <button id="leftButton" class="leftButton" data-button="horror left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="horror right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="movieItemsContainer" id="horrorMovies"></div>
+    </div>
+
+    <!--Romance Movies Container-->
+    <div class="movieContainer">
+      <div class="headingContainer">
+        <h2>Romance:</h2>
+        <div class="btnContainer">
+          <button id="leftButton" class="leftButton" data-button="romance left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="romance right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="movieItemsContainer" id="romanceMovies"></div>
+    </div>
+
+    <!--Thriller Movies Container-->
+    <div class="movieContainer">
+      <div class="headingContainer">
+        <h2>Thriller:</h2>
+        <div class="btnContainer">
+          <button id="leftButton" class="leftButton" data-button="thriller left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="rightButton" class="rightButton" data-button="thriller right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="movieItemsContainer" id="thrillerMovies"></div>
+    </div>
+  </main>
+  <!-- <footer>
     <p>Designed & Coded by Trevin Shu.</p>
-  </footer>
+  </footer> -->
 </html>

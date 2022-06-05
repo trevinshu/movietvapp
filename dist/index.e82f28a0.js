@@ -503,10 +503,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"dV6cC":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _dotenv = require("dotenv");
-var _dotenvDefault = parcelHelpers.interopDefault(_dotenv);
-(0, _dotenvDefault.default).config();
+require("dotenv").config();
 const apiKey = "5dba95e581584ef61f28fcb8642f6a9a";
 //Get Containers
 const trendingContainer = document.getElementById("trending");
@@ -847,7 +844,7 @@ function carousel() {
 }
 carousel();
 
-},{"dotenv":"lErsX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lErsX":[function(require,module,exports) {
+},{"dotenv":"lErsX"}],"lErsX":[function(require,module,exports) {
 var process = require("process");
 const fs = require("fs");
 const path = require("path");
@@ -1548,36 +1545,6 @@ exports.tmpdir = exports.tmpDir = function() {
 exports.EOL = "\n";
 exports.homedir = function() {
     return "/";
-};
-
-},{}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
 };
 
 },{}]},["bFOAz","dV6cC"], "dV6cC", "parcelRequireec6f")

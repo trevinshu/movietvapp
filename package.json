@@ -15,9 +15,6 @@
     "path-browserify": "^1.0.1",
     "process": "^0.11.10"
   },
-  "alias": {
-    "process": false
-  },
   "dependencies": {
     "dotenv": "^16.0.1"
   }

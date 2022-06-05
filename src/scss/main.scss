@@ -110,8 +110,8 @@ header {
   }
 }
 
-main {
-  height: 100vh;
+.container {
+  max-height: 100vh;
 }
 
 .movieItemsContainer {
@@ -144,14 +144,16 @@ main {
     }
   }
 }
-
 .tvItemsContainer {
   display: flex;
   margin-inline: 1rem;
-  margin-bottom: 1rem;
   gap: 0.75rem;
   scroll-snap-type: x mandatory;
   overflow: hidden;
+
+  &:last-of-type {
+    padding-bottom: 1rem;
+  }
 
   .tvItem {
     scroll-snap-align: start;

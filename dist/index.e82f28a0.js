@@ -512,6 +512,13 @@ const comedyMovies = document.getElementById("comedyMovies");
 const horrorMovies = document.getElementById("horrorMovies");
 const romanceMovies = document.getElementById("romanceMovies");
 const thrillerMovies = document.getElementById("thrillerMovies");
+const actionTv = document.getElementById("actionTv");
+const comedyTv = document.getElementById("comedyTv");
+const documentaryTv = document.getElementById("documentaryTv");
+const dramaTv = document.getElementById("dramaTv");
+const familyTv = document.getElementById("familyTv");
+const kidsTv = document.getElementById("kidsTv");
+const realityTv = document.getElementById("realityTv");
 //Get Trending Movies
 async function getTrendingMovies() {
     let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
@@ -543,7 +550,7 @@ getTrendingMovies();
 // }
 //Get Action Movies
 async function getActionMovies() {
-    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);
+    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
@@ -561,7 +568,7 @@ getActionMovies();
 //Get Comedy Movies
 async function getComedyMovies() {
     let response = await fetch(`
-  https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=35&without_genres=28%2C%2027%2C%2010749%2C%2053`);
+  https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35&without_genres=28%2C%2027%2C%2010749%2C%2053`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
@@ -578,7 +585,7 @@ async function getComedyMovies() {
 getComedyMovies();
 //Get Horror Movies
 async function getHorrorMovies() {
-    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=27&without_genres=28%2C%2035%2C%2010749%2C%2053`);
+    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=27&without_genres=28%2C%2035%2C%2010749%2C%2053`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
@@ -595,7 +602,7 @@ async function getHorrorMovies() {
 getHorrorMovies();
 //Get Romance Movies
 async function getRomanceMovies() {
-    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=10749&without_genres=27%2C%20%2053%2C%2028`);
+    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=10749&without_genres=27%2C%20%2053%2C%2028`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
@@ -612,7 +619,7 @@ async function getRomanceMovies() {
 getRomanceMovies();
 //Get Thriller Movies
 async function getThrillerMovies() {
-    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5dba95e581584ef61f28fcb8642f6a9a&language=en-US&sort_by=popularity.desc&page=1&with_genres=53&without_genres=27%2C%2028%2C%2035%2C%2010749`);
+    let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=53&without_genres=27%2C%2028%2C%2035%2C%2010749`);
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
@@ -627,6 +634,125 @@ async function getThrillerMovies() {
     });
 }
 getThrillerMovies();
+//Get Action TV
+async function getActionTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=10759&without_genres=35%2C%2099%2C%2018%2C%2010751%2C10762%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        actionTv.innerHTML = html;
+    });
+}
+getActionTv();
+//Get Comedy TV
+async function getComedyTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=35&without_genres=10759%2C%2099%2C%2018%2C%2010751%2C10762%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        comedyTv.innerHTML = html;
+    });
+}
+getComedyTv();
+//Get Documentary TV
+async function getDocumentaryTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=99&without_genres=10759%2C%2035%2C%2018%2C%2010751%2C10762%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        documentaryTv.innerHTML = html;
+    });
+}
+getDocumentaryTv();
+//Get Drama TV
+async function getDramaTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=18&without_genres=10759%2C%2035%2C%2099%2C%2010751%2C10762%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        dramaTv.innerHTML = html;
+    });
+}
+getDramaTv();
+//Get Family TV
+async function getFamilyTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=10751&without_genres=10759%2C%2035%2C%2099%2C%2018%2C10762%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        familyTv.innerHTML = html;
+    });
+}
+getFamilyTv();
+//Get Kids TV
+async function getKidsTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=10762&without_genres=10759%2C%2035%2C%2099%2C%2018%2C%2010751%2C10763%2C10764%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        kidsTv.innerHTML = html;
+    });
+}
+getKidsTv();
+//Get Reality TV
+async function getRealityTv() {
+    let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=10764&without_genres=10759%2C%2035%2C%2099%2C%2018%2C%2010751%2C10762%2C10767`);
+    let data = await response.json();
+    let results = data.results.slice(0, 10);
+    let html = "";
+    results.forEach((item)=>{
+        html += `
+        <div class="tvItem" >
+            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            <h4>${item.title ? item.title : item.name}</h4>
+        </div>
+     `;
+        realityTv.innerHTML = html;
+    });
+}
+getRealityTv();
 //Content Carousel
 function carousel() {
     let leftBtn = document.querySelectorAll("#leftButton");
@@ -651,6 +777,27 @@ function carousel() {
             } else if (leftParent.dataset.button === "thriller left") {
                 e.preventDefault();
                 thrillerMovies.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "action tv left") {
+                e.preventDefault();
+                actionTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "comedy tv left") {
+                e.preventDefault();
+                comedyTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "documentary tv left") {
+                e.preventDefault();
+                documentaryTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "drama tv left") {
+                e.preventDefault();
+                dramaTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "family tv left") {
+                e.preventDefault();
+                familyTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "kids tv left") {
+                e.preventDefault();
+                kidsTv.scrollLeft -= window.outerWidth;
+            } else if (leftParent.dataset.button === "reality tv left") {
+                e.preventDefault();
+                realityTv.scrollLeft -= window.outerWidth;
             }
         }));
     rightBtn.forEach((rightButton)=>rightButton.addEventListener("click", (e)=>{
@@ -671,6 +818,27 @@ function carousel() {
             } else if (rightParent.dataset.button === "thriller right") {
                 e.preventDefault();
                 thrillerMovies.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "action tv right") {
+                e.preventDefault();
+                actionTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "comedy tv right") {
+                e.preventDefault();
+                comedyTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "documentary tv right") {
+                e.preventDefault();
+                documentaryTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "drama tv right") {
+                e.preventDefault();
+                dramaTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "family tv right") {
+                e.preventDefault();
+                familyTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "kids tv right") {
+                e.preventDefault();
+                kidsTv.scrollLeft += window.outerWidth;
+            } else if (rightParent.dataset.button === "reality tv right") {
+                e.preventDefault();
+                realityTv.scrollLeft += window.outerWidth;
             }
         }));
 }

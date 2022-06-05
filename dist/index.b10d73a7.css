@@ -148,8 +148,8 @@ header .trending .trendingItem h4 {
   font-size: 1.5rem;
 }
 
-main {
-  height: 100vh;
+.container {
+  max-height: 100vh;
 }
 
 .movieItemsContainer {
@@ -184,12 +184,15 @@ main {
 }
 
 .tvItemsContainer {
-  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-bottom: 1rem;
+  margin-inline: 1rem;
   display: flex;
   overflow: hidden;
+}
+
+.tvItemsContainer:last-of-type {
+  padding-bottom: 1rem;
 }
 
 .tvItemsContainer .tvItem {

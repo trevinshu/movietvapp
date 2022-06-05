@@ -1,4 +1,6 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 const apiKey = process.env.API_KEY;
 
 //Get Containers

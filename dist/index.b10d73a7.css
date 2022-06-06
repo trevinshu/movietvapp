@@ -166,6 +166,7 @@ header .trending .trendingItem h4 {
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
+  margin: 1rem;
 }
 
 .movieItemsContainer .movieItem img {
@@ -215,6 +216,37 @@ header .trending .trendingItem h4 {
   letter-spacing: 4px;
   padding-top: 1rem;
   font-weight: 400;
+}
+
+@media only screen and (min-width: 750px) {
+  header .trending .trendingItem, .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  header {
+    margin-inline: 1.5rem;
+  }
+
+  header .navContainer .formContainer {
+    width: 50%;
+  }
+
+  header .trending .trendingItem {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
+
+  .container {
+    margin-inline: 1.5rem;
+  }
+
+  .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
 }
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

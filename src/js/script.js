@@ -27,7 +27,7 @@ async function getTrendingMovies() {
     html += `
         <div class="trendingItem" data-id="${item.id}" data-type="${item.media_type}">
             <a href="#" id="viewItem" class="viewItem">
-              <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
             </a>
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -58,7 +58,7 @@ async function getActionMovies() {
   results.forEach((item) => {
     html += `
         <div class="movieItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -77,7 +77,7 @@ async function getComedyMovies() {
   results.forEach((item) => {
     html += `
         <div class="movieItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -95,7 +95,7 @@ async function getHorrorMovies() {
   results.forEach((item) => {
     html += `
         <div class="movieItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -113,7 +113,7 @@ async function getRomanceMovies() {
   results.forEach((item) => {
     html += `
         <div class="movieItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -131,7 +131,7 @@ async function getThrillerMovies() {
   results.forEach((item) => {
     html += `
         <div class="movieItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -151,7 +151,7 @@ async function getActionTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -171,7 +171,7 @@ async function getComedyTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -191,7 +191,7 @@ async function getDocumentaryTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -211,7 +211,7 @@ async function getDramaTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -231,7 +231,7 @@ async function getFamilyTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -251,7 +251,7 @@ async function getKidsTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
@@ -271,7 +271,7 @@ async function getRealityTv() {
   results.forEach((item) => {
     html += `
         <div class="tvItem" >
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' loading="lazy" alt="movie poster"/>
+            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;

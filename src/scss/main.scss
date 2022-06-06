@@ -123,6 +123,7 @@ header {
   overflow: hidden;
 
   .movieItem {
+    margin: 1rem;
     scroll-snap-align: start;
     flex: 0 0 100%;
     max-width: 100%;
@@ -178,37 +179,62 @@ header {
   }
 }
 
-// @media only screen and (min-width: 900px) {
-//   header {
-//     .trending {
-//       display: flex;
-//       margin: 2rem 1rem;
-//       scroll-snap-type: x mandatory;
-//       scroll-padding: 0;
-//       overflow: hidden;
+@media only screen and (min-width: 750px) {
+  header {
+    .trending {
+      .trendingItem {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+  }
 
-//       .trendingItem {
-//         scroll-snap-align: start;
-//         flex: 0 0 25%;
-//         max-width: 25%;
-//         aspect-ratio: 16/9;
-//         padding: 0;
+  .movieItemsContainer {
+    .movieItem {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
 
-//         &:last-of-type {
-//           // padding-right: 1rem;
-//         }
+  .tvItemsContainer {
+    .tvItem {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+}
 
-//         img {
-//           border-radius: 1rem;
-//           max-width: 100%;
-//           margin: 0 auto;
-//         }
+@media only screen and (min-width: 1920px) {
+  header {
+    margin-inline: 1.5rem;
+    .navContainer {
+      .formContainer {
+        width: 50%;
+      }
+    }
+    .trending {
+      .trendingItem {
+        flex: 0 0 20%;
+        max-width: 20%;
+      }
+    }
+  }
 
-//         h4 {
-//           text-align: center;
-//           padding-top: 1rem;
-//         }
-//       }
-//     }
-//   }
-// }
+  .container {
+    margin-inline: 1.5rem;
+  }
+
+  .movieItemsContainer {
+    .movieItem {
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+
+  .tvItemsContainer {
+    .tvItem {
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+}

@@ -137,19 +137,55 @@ header .trending .trendingItem h4 {
 .headingContainer h2 {
   text-transform: uppercase;
   letter-spacing: 4px;
+  color: #ffc300;
   font-weight: 400;
 }
 
 .headingContainer .btnContainer .leftButton, .headingContainer .btnContainer .rightButton {
-  color: #fefefe;
+  color: #ffc300;
   cursor: pointer;
   background: none;
   border: none;
   font-size: 1.5rem;
 }
 
+.headingContainer .btnContainer .leftButton:hover, .headingContainer .btnContainer .rightButton:hover {
+  color: #fefefe;
+}
+
 .container {
   max-height: 100vh;
+}
+
+.searchItem {
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  flex-direction: column;
+  flex: 0 0 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  display: flex;
+}
+
+.searchItem img {
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+.searchItem a {
+  color: #fefefe;
+  text-decoration: none;
+}
+
+.searchItem h4 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding-top: 1rem;
+  font-weight: 400;
 }
 
 .movieItemsContainer {
@@ -166,7 +202,6 @@ header .trending .trendingItem h4 {
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
-  margin: 1rem;
 }
 
 .movieItemsContainer .movieItem img {
@@ -185,9 +220,10 @@ header .trending .trendingItem h4 {
 }
 
 .tvItemsContainer {
+  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-inline: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   overflow: hidden;
 }
@@ -241,6 +277,15 @@ header .trending .trendingItem h4 {
 
   .container {
     margin-inline: 1.5rem;
+  }
+
+  .searchItem {
+    max-width: 25%;
+    flex-direction: row;
+    flex: 0 0 25%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
   }
 
   .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {

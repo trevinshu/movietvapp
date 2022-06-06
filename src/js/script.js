@@ -2,8 +2,9 @@ require('dotenv').config();
 
 const apiKey = process.env.API_KEY;
 
-//Get Containers
+//Get Containers/Items
 const trendingContainer = document.getElementById('trending');
+const container = document.getElementById('container');
 const actionMovies = document.getElementById('actionMovies');
 const comedyMovies = document.getElementById('comedyMovies');
 const horrorMovies = document.getElementById('horrorMovies');
@@ -16,6 +17,38 @@ const dramaTv = document.getElementById('dramaTv');
 const familyTv = document.getElementById('familyTv');
 const kidsTv = document.getElementById('kidsTv');
 const realityTv = document.getElementById('realityTv');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
+//Handle Search Click
+searchBtn.addEventListener('click', (e) => {
+  const input = searchInput.value;
+  getMoviesAndShowsBySearch(input);
+  e.preventDefault();
+});
+
+//Draw Content For Search Input
+async function getMoviesAndShowsBySearch(searchInput) {
+  let response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1&include_adult=false`);
+  let data = await response.json();
+  let results = data.results.slice(0, 10);
+
+  let html = '';
+  results.forEach((item) => {
+    html += `
+    <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
+      <a href="#" id="viewItem" class="viewItem">
+        ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
+      </a>
+      <h4>${item.title ? item.title : item.name}</h4>
+    </div>
+    `;
+    container.innerHTML = html;
+  });
+
+  let heading = document.createElement('h2');
+  heading.textContent = `Search Results For ${searchInput}`;
+}
 
 //Get Trending Movies
 async function getTrendingMovies() {

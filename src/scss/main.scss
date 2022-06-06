@@ -95,6 +95,7 @@ header {
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 4px;
+    color: $secondaryColor;
   }
 
   //Nav Button Styles
@@ -103,15 +104,50 @@ header {
     .rightButton {
       background: none;
       border: none;
-      color: $otherColor;
+      color: $secondaryColor;
       cursor: pointer;
       font-size: 1.5rem;
+
+      &:hover {
+        color: $otherColor;
+      }
     }
   }
 }
 
 .container {
   max-height: 100vh;
+}
+
+.searchItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 0 0 100%;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  padding: 1rem;
+
+  img {
+    border-radius: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: $otherColor;
+  }
+
+  h4 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 400;
+    padding-top: 1rem;
+  }
 }
 
 .movieItemsContainer {
@@ -123,7 +159,6 @@ header {
   overflow: hidden;
 
   .movieItem {
-    margin: 1rem;
     scroll-snap-align: start;
     flex: 0 0 100%;
     max-width: 100%;
@@ -148,6 +183,7 @@ header {
 .tvItemsContainer {
   display: flex;
   margin-inline: 1rem;
+  margin-bottom: 1rem;
   gap: 0.75rem;
   scroll-snap-type: x mandatory;
   overflow: hidden;
@@ -161,7 +197,6 @@ header {
     flex: 0 0 100%;
     max-width: 100%;
     aspect-ratio: 16/9;
-
     img {
       border-radius: 1rem;
       max-width: 100%;
@@ -222,6 +257,15 @@ header {
 
   .container {
     margin-inline: 1.5rem;
+  }
+
+  .searchItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0 0 25%;
+    max-width: 25%;
   }
 
   .movieItemsContainer {

@@ -4,7 +4,10 @@ const apiKey = process.env.API_KEY;
 
 //Get Containers/Items
 const trendingContainer = document.getElementById('trending');
+const searchContainer = document.getElementById('searchContainer');
+const movieContainer = document.querySelectorAll('.movieContainer');
 const container = document.getElementById('container');
+const tvContainer = document.querySelectorAll('.tvContainer');
 const actionMovies = document.getElementById('actionMovies');
 const comedyMovies = document.getElementById('comedyMovies');
 const horrorMovies = document.getElementById('horrorMovies');
@@ -29,25 +32,42 @@ searchBtn.addEventListener('click', (e) => {
 
 //Draw Content For Search Input
 async function getMoviesAndShowsBySearch(searchInput) {
-  let response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1&include_adult=false`);
+  let response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1`);
   let data = await response.json();
   let results = data.results.slice(0, 10);
-
   let html = '';
+
+  let searchHeading = document.createElement('h2');
+  searchHeading.innerHTML = `Search Results For <span>${searchInput}</span>:`;
+  searchHeading.className = 'searchHeading';
+  container.insertBefore(searchHeading, searchContainer);
+
   results.forEach((item) => {
     html += `
-    <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
-      <a href="#" id="viewItem" class="viewItem">
-        ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
-      </a>
-      <h4>${item.title ? item.title : item.name}</h4>
-    </div>
+      <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
+          <a href="#" id="viewItem" class="viewItem">
+            ${
+              item.backdrop_path
+                ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>`
+                : '<h4 class="emptyImgMsg">No Poster Available For This Movie/Show</h4>'
+            }
+          </a>
+          <h4>${item.title ? item.title : item.name}</h4>
+      </div>
     `;
-    container.innerHTML = html;
+  });
+  searchContainer.innerHTML = html;
+  removePreLoadedContent();
+}
+
+function removePreLoadedContent() {
+  movieContainer.forEach((movieContainers) => {
+    movieContainers.remove();
   });
 
-  let heading = document.createElement('h2');
-  heading.textContent = `Search Results For ${searchInput}`;
+  tvContainer.forEach((tvContainers) => {
+    tvContainers.remove();
+  });
 }
 
 //Get Trending Movies
@@ -410,3 +430,14 @@ function carousel() {
   );
 }
 carousel();
+
+function generateFooter() {
+  let footer = document.getElementById('footer');
+  let date = new Date().getFullYear();
+
+  footer.innerHTML = `
+      <p>Designed & Developed by Trevin Shu &copy; ${date}</p>
+    `;
+}
+
+generateFooter();

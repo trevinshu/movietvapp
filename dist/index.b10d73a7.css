@@ -97,10 +97,11 @@ header .navContainer .formContainer .searchBtn {
 }
 
 header .trending {
-  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
+  border-bottom: 3px solid #ffc300;
   gap: .75rem;
-  margin-bottom: 1rem;
+  margin-inline: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   overflow: hidden;
 }
@@ -129,8 +130,7 @@ header .trending .trendingItem h4 {
 
 .headingContainer {
   justify-content: space-between;
-  margin: 1rem;
-  padding-top: .5rem;
+  padding: 1rem;
   display: flex;
 }
 
@@ -157,35 +157,62 @@ header .trending .trendingItem h4 {
   max-height: 100vh;
 }
 
-.searchItem {
-  max-width: 100%;
+.searchHeading {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #fefefe;
+  text-align: center;
+  margin: 1rem;
+  padding-bottom: .5rem;
+  font-weight: 400;
+}
+
+.searchHeading span {
+  color: #ffc300;
+}
+
+.searchContainer {
+  gap: 1rem;
+  margin: 1rem;
+  display: grid;
+  overflow: hidden;
+}
+
+.searchContainer .searchItem {
   aspect-ratio: 16 / 9;
   flex-direction: column;
-  flex: 0 0 100%;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   display: flex;
 }
 
-.searchItem img {
+.searchContainer .searchItem img {
   max-width: 100%;
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
 
-.searchItem a {
+.searchContainer .searchItem:hover {
+  filter: brightness(75%);
+  transition: filter 3ms ease-in;
+}
+
+.searchContainer .searchItem a {
   color: #fefefe;
   text-decoration: none;
 }
 
-.searchItem h4 {
+.searchContainer .searchItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
   padding-top: 1rem;
   font-weight: 400;
+}
+
+.searchContainer .searchItem .emptyImgMsg {
+  padding-block: 1rem;
 }
 
 .movieItemsContainer {
@@ -220,10 +247,9 @@ header .trending .trendingItem h4 {
 }
 
 .tvItemsContainer {
-  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-bottom: 1rem;
+  margin-inline: 1rem;
   display: flex;
   overflow: hidden;
 }
@@ -254,8 +280,37 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
+footer {
+  z-index: 10;
+  height: 10pvh;
+  background-color: #001524;
+  padding: .5rem 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer p {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+  color: #ffc300;
+  font-size: .9rem;
+  font-weight: 300;
+}
+
 @media only screen and (min-width: 750px) {
-  header .trending .trendingItem, .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
+  header .trending .trendingItem {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .searchContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
     max-width: 50%;
     flex: 0 0 50%;
   }
@@ -279,13 +334,12 @@ header .trending .trendingItem h4 {
     margin-inline: 1.5rem;
   }
 
-  .searchItem {
-    max-width: 25%;
-    flex-direction: row;
-    flex: 0 0 25%;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
+  .searchHeading {
+    text-align: left;
+  }
+
+  .searchContainer {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {

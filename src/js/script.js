@@ -56,6 +56,7 @@ async function getMoviesAndShowsBySearch(searchInput) {
       </div>
     `;
   });
+
   searchContainer.innerHTML = html;
   removePreLoadedContent();
 }

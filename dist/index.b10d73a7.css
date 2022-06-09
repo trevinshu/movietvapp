@@ -62,19 +62,41 @@ body {
 }
 
 header .navContainer {
-  justify-content: center;
-  align-items: center;
   margin-top: 1rem;
-  display: flex;
-}
-
-header .navContainer .formContainer {
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: .7rem;
   margin-inline: 1rem;
   display: flex;
 }
 
-header .navContainer .formContainer .searchInput {
+header .navContainer h1 {
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffc300;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
+
+header .navContainer a {
+  color: #fefefe;
+  font-size: 2rem;
+}
+
+header .navContainer a:hover {
+  color: #ffc300;
+}
+
+header .formSection {
+  padding: 1rem;
+}
+
+header .formSection .formContainer {
+  width: 100%;
+  display: flex;
+}
+
+header .formSection .formContainer .searchInput {
   width: 100%;
   border: none;
   border-top-left-radius: 1rem;
@@ -84,7 +106,7 @@ header .navContainer .formContainer .searchInput {
   padding: .5rem 1rem;
 }
 
-header .navContainer .formContainer .searchBtn {
+header .formSection .formContainer .searchBtn {
   width: 10vh;
   color: #001524;
   cursor: pointer;
@@ -118,6 +140,11 @@ header .trending .trendingItem img {
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
+}
+
+header .trending .trendingItem img:hover {
+  filter: brightness(75%);
+  transition: filter 3ms ease-in;
 }
 
 header .trending .trendingItem h4 {
@@ -173,7 +200,7 @@ header .trending .trendingItem h4 {
 
 .searchContainer {
   gap: 1rem;
-  margin: 1rem;
+  margin-inline: 1rem;
   display: grid;
   overflow: hidden;
 }
@@ -193,7 +220,7 @@ header .trending .trendingItem h4 {
   margin: 0 auto;
 }
 
-.searchContainer .searchItem:hover {
+.searchContainer .searchItem img:hover {
   filter: brightness(75%);
   transition: filter 3ms ease-in;
 }
@@ -213,6 +240,10 @@ header .trending .trendingItem h4 {
 
 .searchContainer .searchItem .emptyImgMsg {
   padding-block: 1rem;
+}
+
+.searchContainer:last-of-type {
+  padding-bottom: 4rem;
 }
 
 .movieItemsContainer {
@@ -238,12 +269,21 @@ header .trending .trendingItem h4 {
   margin: 0 auto;
 }
 
+.movieItemsContainer .movieItem img:hover {
+  filter: brightness(75%);
+  transition: filter 3ms ease-in;
+}
+
 .movieItemsContainer .movieItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
   padding-top: 1rem;
   font-weight: 400;
+}
+
+.tvContainer:last-of-type {
+  padding-bottom: 3.5rem;
 }
 
 .tvItemsContainer {
@@ -270,6 +310,11 @@ header .trending .trendingItem h4 {
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
+}
+
+.tvItemsContainer .tvItem img:hover {
+  filter: brightness(75%);
+  transition: filter 3ms ease-in;
 }
 
 .tvItemsContainer .tvItem h4 {
@@ -321,7 +366,22 @@ footer p {
     margin-inline: 1.5rem;
   }
 
-  header .navContainer .formContainer {
+  header .navContainer h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  header .navContainer a {
+    font-size: 2rem;
+  }
+
+  header .formSection {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  header .formSection .formContainer {
     width: 50%;
   }
 

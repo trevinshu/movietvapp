@@ -20,13 +20,34 @@ body {
 header {
   .navContainer {
     margin-top: 1rem;
+    margin-inline: 1rem;
+    gap: 0.7rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: 400;
+      color: $secondaryColor;
+      letter-spacing: 4px;
+    }
+
+    a {
+      color: $otherColor;
+      font-size: 2rem;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
+  }
+
+  .formSection {
+    padding: 1rem;
     .formContainer {
       display: flex;
-      margin-inline: 1rem;
       width: 100%;
       .searchInput {
         width: 100%;
@@ -72,6 +93,11 @@ header {
         max-width: 100%;
         margin: 0 auto;
         cursor: pointer;
+
+        &:hover {
+          filter: brightness(75%);
+          transition: filter 3ms ease-in;
+        }
       }
 
       h4 {
@@ -135,7 +161,7 @@ header {
 .searchContainer {
   display: grid;
   overflow: hidden;
-  margin: 1rem;
+  margin-inline: 1rem;
   gap: 1rem;
 
   .searchItem {
@@ -150,11 +176,11 @@ header {
       max-width: 100%;
       margin: 0 auto;
       cursor: pointer;
-    }
 
-    &:hover {
-      filter: brightness(75%);
-      transition: filter 3ms ease-in;
+      &:hover {
+        filter: brightness(75%);
+        transition: filter 3ms ease-in;
+      }
     }
 
     a {
@@ -173,6 +199,10 @@ header {
     .emptyImgMsg {
       padding-block: 1rem;
     }
+  }
+
+  &:last-of-type {
+    padding-bottom: 4rem;
   }
 }
 
@@ -195,6 +225,11 @@ header {
       max-width: 100%;
       margin: 0 auto;
       cursor: pointer;
+
+      &:hover {
+        filter: brightness(75%);
+        transition: filter 3ms ease-in;
+      }
     }
 
     h4 {
@@ -206,6 +241,11 @@ header {
     }
   }
 }
+
+.tvContainer:last-of-type {
+  padding-bottom: 3.5rem;
+}
+
 .tvItemsContainer {
   display: flex;
   margin-inline: 1rem;
@@ -227,6 +267,10 @@ header {
       max-width: 100%;
       margin: 0 auto;
       cursor: pointer;
+      &:hover {
+        filter: brightness(75%);
+        transition: filter 3ms ease-in;
+      }
     }
 
     h4 {
@@ -291,7 +335,22 @@ footer {
 @media only screen and (min-width: 1920px) {
   header {
     margin-inline: 1.5rem;
+
     .navContainer {
+      h1 {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+
+      a {
+        font-size: 2rem;
+      }
+    }
+
+    .formSection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .formContainer {
         width: 50%;
       }

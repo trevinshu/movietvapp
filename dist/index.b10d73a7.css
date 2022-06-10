@@ -147,11 +147,7 @@ input, button, textarea, select {
   color: #fefefe;
 }
 
-.dark .headingContainer h2 {
-  color: #001524;
-}
-
-.dark .headingContainer .btnContainer .leftButton, .dark .headingContainer .btnContainer .rightButton {
+.dark .headingContainer h2, .dark .headingContainer .btnContainer .leftButton, .dark .headingContainer .btnContainer .rightButton {
   color: #ffc300;
 }
 
@@ -164,7 +160,7 @@ input, button, textarea, select {
 }
 
 .dark footer p {
-  color: #ffc300;
+  color: #fefefe;
 }
 
 body {
@@ -198,6 +194,10 @@ body header .navContainer a {
 
 body header .navContainer a:hover {
   color: #ffc300;
+}
+
+body header .navContainer a i {
+  transition: all 1s ease-in-out;
 }
 
 body header .formSection {
@@ -325,7 +325,7 @@ body .searchContainer .searchItem img {
 
 body .searchContainer .searchItem img:hover {
   filter: brightness(75%);
-  transition: filter 3ms ease-in;
+  transition: all 3ms ease-in;
 }
 
 body .searchContainer .searchItem a {

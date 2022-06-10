@@ -60,7 +60,6 @@ $otherColor: #fefefe;
       color: $primaryColor;
     }
 
-    //Nav Button Styles
     .btnContainer {
       .leftButton,
       .rightButton {
@@ -137,7 +136,7 @@ $otherColor: #fefefe;
 
   .headingContainer {
     h2 {
-      color: $primaryColor;
+      color: $secondaryColor;
     }
 
     //Nav Button Styles
@@ -156,14 +155,13 @@ $otherColor: #fefefe;
     background-color: $primaryColor;
 
     p {
-      color: $secondaryColor;
+      color: $otherColor;
     }
   }
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
-
   transition: 1s;
 
   //Header Styles
@@ -192,6 +190,10 @@ body {
 
         &:hover {
           color: $secondaryColor;
+        }
+
+        i {
+          transition: all ease-in-out 1s;
         }
       }
     }
@@ -321,7 +323,7 @@ body {
 
         &:hover {
           filter: brightness(75%);
-          transition: filter 3ms ease-in;
+          transition: all 3ms ease-in;
         }
       }
 

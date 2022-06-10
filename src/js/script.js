@@ -25,7 +25,6 @@ const toggleColorScheme = document.getElementById('toggleColorScheme');
 const button = document.getElementById('colorModeIcon');
 
 toggleColorScheme.addEventListener('click', (e) => {
-  darkMode = localStorage.getItem('lightMode');
   if (document.body.classList.toggle('dark')) {
     button.classList.remove('fa-moon');
     button.classList.add('fa-sun');
@@ -33,7 +32,6 @@ toggleColorScheme.addEventListener('click', (e) => {
     button.classList.add('fa-moon');
     button.classList.remove('fa-sun');
   }
-
   e.preventDefault();
 });
 

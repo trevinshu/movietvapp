@@ -525,6 +525,11 @@ const kidsTv = document.getElementById("kidsTv");
 const realityTv = document.getElementById("realityTv");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
+const toggleColorScheme = document.getElementById("toggleColorScheme");
+toggleColorScheme.addEventListener("click", (e)=>{
+    document.body.classList.toggle("dark");
+    e.preventDefault();
+});
 //Handle Search Click
 searchBtn.addEventListener("click", (e)=>{
     const input = searchInput.value;

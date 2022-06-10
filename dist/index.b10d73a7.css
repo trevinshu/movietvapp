@@ -55,13 +55,124 @@ input, button, textarea, select {
   }
 }
 
-body {
-  color: #fefefe;
-  background-color: #001524;
-  font-family: Open Sans, sans-serif;
+.light {
+  color: #001524;
+  background-color: #fefefe;
 }
 
-header .navContainer {
+.light header .navContainer h1 {
+  color: #001524;
+  letter-spacing: 4px;
+}
+
+.light header .navContainer a {
+  color: #001524;
+  font-size: 2rem;
+}
+
+.light header .navContainer a:hover {
+  color: #ffc300;
+}
+
+.light .formSection .formContainer .searchInput {
+  color: #001524;
+  background-color: #fefefe;
+  border: 1px solid #001524;
+}
+
+.light .formSection .formContainer .searchBtn {
+  color: #001524;
+  background-color: #ffc300;
+}
+
+.light .searchContainer .searchItem a, .light .headingContainer h2 {
+  color: #001524;
+}
+
+.light .headingContainer .btnContainer .leftButton, .light .headingContainer .btnContainer .rightButton {
+  color: #001524;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.light .headingContainer .btnContainer .leftButton:hover, .light .headingContainer .btnContainer .rightButton:hover {
+  color: #ffc300;
+}
+
+.light footer {
+  background-color: #fefefe;
+}
+
+.light footer p {
+  color: #001524;
+}
+
+.dark {
+  color: #fefefe;
+  background-color: #001524;
+}
+
+.dark header .navContainer h1 {
+  color: #fefefe;
+  letter-spacing: 4px;
+}
+
+.dark header .navContainer h1:hover {
+  color: #ffc300;
+}
+
+.dark header .navContainer a {
+  color: #fefefe;
+  font-size: 2rem;
+}
+
+.dark header .navContainer a:hover {
+  color: #ffc300;
+}
+
+.dark .formSection .formContainer .searchInput {
+  color: #fefefe;
+  background-color: #001524;
+  border: 1px solid #ffc300;
+}
+
+.dark .formSection .formContainer .searchBtn {
+  color: #001524;
+  background-color: #ffc300;
+}
+
+.dark .searchContainer .searchItem a {
+  color: #fefefe;
+}
+
+.dark .headingContainer h2 {
+  color: #001524;
+}
+
+.dark .headingContainer .btnContainer .leftButton, .dark .headingContainer .btnContainer .rightButton {
+  color: #ffc300;
+}
+
+.dark .headingContainer .btnContainer .leftButton:hover, .dark .headingContainer .btnContainer .rightButton:hover {
+  color: #fefefe;
+}
+
+.dark footer {
+  background-color: #001524;
+}
+
+.dark footer p {
+  color: #ffc300;
+}
+
+body {
+  font-family: Open Sans, sans-serif;
+  transition: all 1s;
+}
+
+body header .navContainer {
   margin-top: 1rem;
   justify-content: space-between;
   align-items: center;
@@ -70,35 +181,36 @@ header .navContainer {
   display: flex;
 }
 
-header .navContainer h1 {
+body header .navContainer h1 {
   text-transform: uppercase;
   text-align: center;
-  color: #ffc300;
   letter-spacing: 4px;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
-header .navContainer a {
+body header .navContainer a {
   color: #fefefe;
-  font-size: 2rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-decoration: none;
 }
 
-header .navContainer a:hover {
+body header .navContainer a:hover {
   color: #ffc300;
 }
 
-header .formSection {
+body header .formSection {
   padding: 1rem;
 }
 
-header .formSection .formContainer {
+body header .formSection .formContainer {
   width: 100%;
   display: flex;
 }
 
-header .formSection .formContainer .searchInput {
+body header .formSection .formContainer .searchInput {
   width: 100%;
-  border: none;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   outline: none;
@@ -106,11 +218,9 @@ header .formSection .formContainer .searchInput {
   padding: .5rem 1rem;
 }
 
-header .formSection .formContainer .searchBtn {
+body header .formSection .formContainer .searchBtn {
   width: 10vh;
-  color: #001524;
   cursor: pointer;
-  background-color: #ffc300;
   border: none;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -118,7 +228,7 @@ header .formSection .formContainer .searchBtn {
   margin: 0;
 }
 
-header .trending {
+body header .trending {
   scroll-snap-type: x mandatory;
   border-bottom: 3px solid #ffc300;
   gap: .75rem;
@@ -128,26 +238,26 @@ header .trending {
   overflow: hidden;
 }
 
-header .trending .trendingItem {
+body header .trending .trendingItem {
   scroll-snap-align: start;
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
 }
 
-header .trending .trendingItem img {
+body header .trending .trendingItem img {
   max-width: 100%;
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
 
-header .trending .trendingItem img:hover {
+body header .trending .trendingItem img:hover {
   filter: brightness(75%);
   transition: filter 3ms ease-in;
 }
 
-header .trending .trendingItem h4 {
+body header .trending .trendingItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -155,57 +265,50 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
-.headingContainer {
+body .headingContainer {
   justify-content: space-between;
   padding: 1rem;
   display: flex;
 }
 
-.headingContainer h2 {
+body .headingContainer h2 {
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #ffc300;
   font-weight: 400;
 }
 
-.headingContainer .btnContainer .leftButton, .headingContainer .btnContainer .rightButton {
-  color: #ffc300;
+body .headingContainer .btnContainer .leftButton, body .headingContainer .btnContainer .rightButton {
   cursor: pointer;
   background: none;
   border: none;
   font-size: 1.5rem;
 }
 
-.headingContainer .btnContainer .leftButton:hover, .headingContainer .btnContainer .rightButton:hover {
-  color: #fefefe;
-}
-
-.container {
+body .container {
   max-height: 100vh;
 }
 
-.searchHeading {
+body .searchHeading {
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #fefefe;
   text-align: center;
   margin: 1rem;
   padding-bottom: .5rem;
   font-weight: 400;
 }
 
-.searchHeading span {
+body .searchHeading span {
   color: #ffc300;
 }
 
-.searchContainer {
+body .searchContainer {
   gap: 1rem;
   margin-inline: 1rem;
   display: grid;
   overflow: hidden;
 }
 
-.searchContainer .searchItem {
+body .searchContainer .searchItem {
   aspect-ratio: 16 / 9;
   flex-direction: column;
   justify-content: center;
@@ -213,24 +316,23 @@ header .trending .trendingItem h4 {
   display: flex;
 }
 
-.searchContainer .searchItem img {
+body .searchContainer .searchItem img {
   max-width: 100%;
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
 
-.searchContainer .searchItem img:hover {
+body .searchContainer .searchItem img:hover {
   filter: brightness(75%);
   transition: filter 3ms ease-in;
 }
 
-.searchContainer .searchItem a {
-  color: #fefefe;
+body .searchContainer .searchItem a {
   text-decoration: none;
 }
 
-.searchContainer .searchItem h4 {
+body .searchContainer .searchItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -238,15 +340,15 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
-.searchContainer .searchItem .emptyImgMsg {
+body .searchContainer .searchItem .emptyImgMsg {
   padding-block: 1rem;
 }
 
-.searchContainer:last-of-type {
+body .searchContainer:last-of-type {
   padding-bottom: 4rem;
 }
 
-.movieItemsContainer {
+body .movieItemsContainer {
   margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
@@ -255,26 +357,26 @@ header .trending .trendingItem h4 {
   overflow: hidden;
 }
 
-.movieItemsContainer .movieItem {
+body .movieItemsContainer .movieItem {
   scroll-snap-align: start;
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
 }
 
-.movieItemsContainer .movieItem img {
+body .movieItemsContainer .movieItem img {
   max-width: 100%;
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
 
-.movieItemsContainer .movieItem img:hover {
+body .movieItemsContainer .movieItem img:hover {
   filter: brightness(75%);
   transition: filter 3ms ease-in;
 }
 
-.movieItemsContainer .movieItem h4 {
+body .movieItemsContainer .movieItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -282,11 +384,11 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
-.tvContainer:last-of-type {
+body .tvContainer:last-of-type {
   padding-bottom: 3.5rem;
 }
 
-.tvItemsContainer {
+body .tvItemsContainer {
   scroll-snap-type: x mandatory;
   gap: .75rem;
   margin-inline: 1rem;
@@ -294,30 +396,30 @@ header .trending .trendingItem h4 {
   overflow: hidden;
 }
 
-.tvItemsContainer:last-of-type {
+body .tvItemsContainer:last-of-type {
   padding-bottom: 1rem;
 }
 
-.tvItemsContainer .tvItem {
+body .tvItemsContainer .tvItem {
   scroll-snap-align: start;
   max-width: 100%;
   aspect-ratio: 16 / 9;
   flex: 0 0 100%;
 }
 
-.tvItemsContainer .tvItem img {
+body .tvItemsContainer .tvItem img {
   max-width: 100%;
   cursor: pointer;
   border-radius: 1rem;
   margin: 0 auto;
 }
 
-.tvItemsContainer .tvItem img:hover {
+body .tvItemsContainer .tvItem img:hover {
   filter: brightness(75%);
   transition: filter 3ms ease-in;
 }
 
-.tvItemsContainer .tvItem h4 {
+body .tvItemsContainer .tvItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -325,10 +427,9 @@ header .trending .trendingItem h4 {
   font-weight: 400;
 }
 
-footer {
+body footer {
   z-index: 10;
   height: 10pvh;
-  background-color: #001524;
   padding: .5rem 1rem;
   position: fixed;
   bottom: 0;
@@ -336,73 +437,72 @@ footer {
   right: 0;
 }
 
-footer p {
+body footer p {
   text-transform: uppercase;
   letter-spacing: 4px;
   text-align: center;
-  color: #ffc300;
   font-size: .9rem;
   font-weight: 300;
 }
 
 @media only screen and (min-width: 750px) {
-  header .trending .trendingItem {
+  body header .trending .trendingItem {
     max-width: 50%;
     flex: 0 0 50%;
   }
 
-  .searchContainer {
+  body .searchContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
+  body .movieItemsContainer .movieItem, body .tvItemsContainer .tvItem {
     max-width: 50%;
     flex: 0 0 50%;
   }
 }
 
 @media only screen and (min-width: 1920px) {
-  header {
+  body header {
     margin-inline: 1.5rem;
   }
 
-  header .navContainer h1 {
+  body header .navContainer h1 {
     font-size: 2rem;
     font-weight: 700;
   }
 
-  header .navContainer a {
+  body header .navContainer a {
     font-size: 2rem;
   }
 
-  header .formSection {
+  body header .formSection {
     justify-content: center;
     align-items: center;
     display: flex;
   }
 
-  header .formSection .formContainer {
+  body header .formSection .formContainer {
     width: 50%;
   }
 
-  header .trending .trendingItem {
+  body header .trending .trendingItem {
     max-width: 20%;
     flex: 0 0 20%;
   }
 
-  .container {
+  body .container {
     margin-inline: 1.5rem;
   }
 
-  .searchHeading {
+  body .searchHeading {
     text-align: left;
   }
 
-  .searchContainer {
+  body .searchContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .movieItemsContainer .movieItem, .tvItemsContainer .tvItem {
+  body .movieItemsContainer .movieItem, body .tvItemsContainer .tvItem {
     max-width: 20%;
     flex: 0 0 20%;
   }

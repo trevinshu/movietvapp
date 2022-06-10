@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="icon" type="image/x-icon" href="img/clapperboard-solid.svg" />
     <link rel="stylesheet" href="./scss/main.scss" />
     <script src="js/script.js" defer type="module"></script>
     <title>Movies & TV App</title>
   </head>
-  <body>
+  <body class="dark light">
     <header class="headerContainer">
       <nav class="navContainer">
-        <a href="index.html"><i class="fa-solid fa-clapperboard"></i></a>
-        <h1>Movies & TV App</h1>
-        <a href="index.html"><i class="fa-solid fa-moon"></i></a>
+        <a href="index.html"><h1>Movies & TV App</h1></a>
+        <a id="toggleColorScheme" class="toggleColorScheme"><i class="fa-solid fa-sun"></i></a>
       </nav>
       <div class="formSection">
         <form id="formContainer" class="formContainer">
@@ -31,154 +31,154 @@
       </div>
       <div class="trending" id="trending"></div>
     </header>
+    <main class="container" id="container">
+      <div class="searchContainer" id="searchContainer"></div>
+      <!--Action Movies Container-->
+      <div class="movieContainer">
+        <div class="headingContainer">
+          <h2>Action:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="action left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="action right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="movieItemsContainer" id="actionMovies"></div>
+      </div>
+
+      <!--Comedy Movies Container-->
+      <div class="movieContainer">
+        <div class="headingContainer">
+          <h2>Comedy:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="comedy left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="comedy right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="movieItemsContainer" id="comedyMovies"></div>
+      </div>
+
+      <!--Horror Movies Container-->
+      <div class="movieContainer">
+        <div class="headingContainer">
+          <h2>Horror:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="horror left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="horror right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="movieItemsContainer" id="horrorMovies"></div>
+      </div>
+
+      <!--Romance Movies Container-->
+      <div class="movieContainer">
+        <div class="headingContainer">
+          <h2>Romance:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="romance left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="romance right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="movieItemsContainer" id="romanceMovies"></div>
+      </div>
+
+      <!--Thriller Movies Container-->
+      <div class="movieContainer">
+        <div class="headingContainer">
+          <h2>Thriller:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="thriller left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="thriller right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="movieItemsContainer" id="thrillerMovies"></div>
+      </div>
+
+      <!--Action TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Action TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="action tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="action tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="actionTv"></div>
+      </div>
+
+      <!--Comedy TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Comedy TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="comedy tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="comedy tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="comedyTv"></div>
+      </div>
+
+      <!--Documentary TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Documentary TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="documentary tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="documentary tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="documentaryTv"></div>
+      </div>
+
+      <!--Drama TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Drama TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="drama tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="drama tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="dramaTv"></div>
+      </div>
+
+      <!--Family TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Family TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="family tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="family tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="familyTv"></div>
+      </div>
+
+      <!--Kids TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Kids TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="kids tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="kids tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="kidsTv"></div>
+      </div>
+
+      <!--Reality TV Container-->
+      <div class="tvContainer">
+        <div class="headingContainer">
+          <h2>Reality TV:</h2>
+          <div class="btnContainer">
+            <button id="leftButton" class="leftButton" data-button="reality tv left"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="rightButton" class="rightButton" data-button="reality tv right"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="tvItemsContainer" id="realityTv"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <!-- <p>Designed & Coded by Trevin Shu.</p> -->
+    </footer>
   </body>
-  <main class="container" id="container">
-    <div class="searchContainer" id="searchContainer"></div>
-    <!--Action Movies Container-->
-    <div class="movieContainer">
-      <div class="headingContainer">
-        <h2>Action:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="action left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="action right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="movieItemsContainer" id="actionMovies"></div>
-    </div>
-
-    <!--Comedy Movies Container-->
-    <div class="movieContainer">
-      <div class="headingContainer">
-        <h2>Comedy:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="comedy left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="comedy right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="movieItemsContainer" id="comedyMovies"></div>
-    </div>
-
-    <!--Horror Movies Container-->
-    <div class="movieContainer">
-      <div class="headingContainer">
-        <h2>Horror:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="horror left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="horror right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="movieItemsContainer" id="horrorMovies"></div>
-    </div>
-
-    <!--Romance Movies Container-->
-    <div class="movieContainer">
-      <div class="headingContainer">
-        <h2>Romance:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="romance left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="romance right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="movieItemsContainer" id="romanceMovies"></div>
-    </div>
-
-    <!--Thriller Movies Container-->
-    <div class="movieContainer">
-      <div class="headingContainer">
-        <h2>Thriller:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="thriller left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="thriller right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="movieItemsContainer" id="thrillerMovies"></div>
-    </div>
-
-    <!--Action TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Action TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="action tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="action tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="actionTv"></div>
-    </div>
-
-    <!--Comedy TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Comedy TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="comedy tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="comedy tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="comedyTv"></div>
-    </div>
-
-    <!--Documentary TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Documentary TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="documentary tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="documentary tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="documentaryTv"></div>
-    </div>
-
-    <!--Drama TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Drama TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="drama tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="drama tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="dramaTv"></div>
-    </div>
-
-    <!--Family TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Family TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="family tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="family tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="familyTv"></div>
-    </div>
-
-    <!--Kids TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Kids TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="kids tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="kids tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="kidsTv"></div>
-    </div>
-
-    <!--Reality TV Container-->
-    <div class="tvContainer">
-      <div class="headingContainer">
-        <h2>Reality TV:</h2>
-        <div class="btnContainer">
-          <button id="leftButton" class="leftButton" data-button="reality tv left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button id="rightButton" class="rightButton" data-button="reality tv right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-      <div class="tvItemsContainer" id="realityTv"></div>
-    </div>
-  </main>
-  <footer id="footer">
-    <!-- <p>Designed & Coded by Trevin Shu.</p> -->
-  </footer>
 </html>

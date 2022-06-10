@@ -23,14 +23,32 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const toggleColorScheme = document.getElementById('toggleColorScheme');
 const button = document.getElementById('colorModeIcon');
+let lightMode = localStorage.getItem('lightMode');
+
+const enableLightMode = () => {
+  document.body.classList.add('light');
+  button.classList.add('fa-moon');
+  button.classList.remove('fa-sun');
+  localStorage.setItem('lightMode', 'enabled');
+};
+
+const disableLightMode = () => {
+  document.body.classList.remove('light');
+  button.classList.remove('fa-moon');
+  button.classList.add('fa-sun');
+  localStorage.setItem('lightMode', null);
+};
+
+if (lightMode === 'enabled') {
+  enableLightMode();
+}
 
 toggleColorScheme.addEventListener('click', (e) => {
-  if (document.body.classList.toggle('dark')) {
-    button.classList.remove('fa-moon');
-    button.classList.add('fa-sun');
+  lightMode = localStorage.getItem('lightMode');
+  if (lightMode !== 'enabled') {
+    enableLightMode();
   } else {
-    button.classList.add('fa-moon');
-    button.classList.remove('fa-sun');
+    disableLightMode();
   }
   e.preventDefault();
 });

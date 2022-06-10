@@ -109,61 +109,9 @@ input, button, textarea, select {
   color: #001524;
 }
 
-.dark {
-  color: #fefefe;
-  background-color: #001524;
-}
-
-.dark header .navContainer h1 {
-  color: #fefefe;
-  letter-spacing: 4px;
-}
-
-.dark header .navContainer h1:hover {
-  color: #ffc300;
-}
-
-.dark header .navContainer a {
-  color: #fefefe;
-  font-size: 2rem;
-}
-
-.dark header .navContainer a:hover {
-  color: #ffc300;
-}
-
-.dark .formSection .formContainer .searchInput {
-  color: #fefefe;
-  background-color: #001524;
-  border: 1px solid #ffc300;
-}
-
-.dark .formSection .formContainer .searchBtn {
-  color: #001524;
-  background-color: #ffc300;
-}
-
-.dark .searchContainer .searchItem a {
-  color: #fefefe;
-}
-
-.dark .headingContainer h2, .dark .headingContainer .btnContainer .leftButton, .dark .headingContainer .btnContainer .rightButton {
-  color: #ffc300;
-}
-
-.dark .headingContainer .btnContainer .leftButton:hover, .dark .headingContainer .btnContainer .rightButton:hover {
-  color: #fefefe;
-}
-
-.dark footer {
-  background-color: #001524;
-}
-
-.dark footer p {
-  color: #fefefe;
-}
-
 body {
+  color: #fefefe;
+  background-color: #001524;
   font-family: Open Sans, sans-serif;
   transition: all 1s;
 }
@@ -178,6 +126,7 @@ body header .navContainer {
 }
 
 body header .navContainer h1 {
+  color: #fefefe;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 4px;
@@ -210,7 +159,10 @@ body header .formSection .formContainer {
 }
 
 body header .formSection .formContainer .searchInput {
+  color: #fefefe;
   width: 100%;
+  background-color: #001524;
+  border: 1px solid #ffc300;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   outline: none;
@@ -219,8 +171,10 @@ body header .formSection .formContainer .searchInput {
 }
 
 body header .formSection .formContainer .searchBtn {
+  color: #001524;
   width: 10vh;
   cursor: pointer;
+  background-color: #ffc300;
   border: none;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -272,16 +226,22 @@ body .headingContainer {
 }
 
 body .headingContainer h2 {
+  color: #ffc300;
   text-transform: uppercase;
   letter-spacing: 4px;
   font-weight: 400;
 }
 
 body .headingContainer .btnContainer .leftButton, body .headingContainer .btnContainer .rightButton {
+  color: #ffc300;
   cursor: pointer;
   background: none;
   border: none;
   font-size: 1.5rem;
+}
+
+body .headingContainer .btnContainer .leftButton:hover, body .headingContainer .btnContainer .rightButton:hover {
+  color: #fefefe;
 }
 
 body .container {
@@ -329,6 +289,7 @@ body .searchContainer .searchItem img:hover {
 }
 
 body .searchContainer .searchItem a {
+  color: #fefefe;
   text-decoration: none;
 }
 
@@ -430,6 +391,7 @@ body .tvItemsContainer .tvItem h4 {
 body footer {
   z-index: 10;
   height: 10pvh;
+  background-color: #001524;
   padding: .5rem 1rem;
   position: fixed;
   bottom: 0;
@@ -438,6 +400,7 @@ body footer {
 }
 
 body footer p {
+  color: #fefefe;
   text-transform: uppercase;
   letter-spacing: 4px;
   text-align: center;

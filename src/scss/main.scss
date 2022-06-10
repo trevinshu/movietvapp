@@ -85,82 +85,84 @@ $otherColor: #fefefe;
   }
 }
 
-.dark {
-  background-color: $primaryColor;
-  color: $otherColor;
+// .dark {
+//   // background-color: $primaryColor;
+//   // color: $otherColor;
 
-  header {
-    .navContainer {
-      h1 {
-        color: $otherColor;
-        letter-spacing: 4px;
+//   // header {
+//   //   .navContainer {
+//   //     h1 {
+//   //       color: $otherColor;
+//   //       letter-spacing: 4px;
 
-        &:hover {
-          color: $secondaryColor;
-        }
-      }
+//   //       &:hover {
+//   //         color: $secondaryColor;
+//   //       }
+//   //     }
 
-      a {
-        color: $otherColor;
-        font-size: 2rem;
+//   //     a {
+//   //       color: $otherColor;
+//   //       font-size: 2rem;
 
-        &:hover {
-          color: $secondaryColor;
-        }
-      }
-    }
-  }
+//   //       &:hover {
+//   //         color: $secondaryColor;
+//   //       }
+//   //     }
+//   //   }
+//   // }
 
-  .formSection {
-    .formContainer {
-      .searchInput {
-        background-color: $primaryColor;
-        color: $otherColor;
-        border: $secondaryColor 1px solid;
-      }
+//   // .formSection {
+//   //   .formContainer {
+//   //     .searchInput {
+//   //       background-color: $primaryColor;
+//   //       color: $otherColor;
+//   //       border: $secondaryColor 1px solid;
+//   //     }
 
-      .searchBtn {
-        background-color: $secondaryColor;
-        color: $primaryColor;
-      }
-    }
-  }
+//   //     .searchBtn {
+//   //       background-color: $secondaryColor;
+//   //       color: $primaryColor;
+//   //     }
+//   //   }
+//   // }
 
-  .searchContainer {
-    .searchItem {
-      a {
-        color: $otherColor;
-      }
-    }
-  }
+//   // .searchContainer {
+//   //   .searchItem {
+//   //     a {
+//   //       color: $otherColor;
+//   //     }
+//   //   }
+//   // }
 
-  .headingContainer {
-    h2 {
-      color: $secondaryColor;
-    }
+//   // .headingContainer {
+//   //   h2 {
+//   //     color: $secondaryColor;
+//   //   }
 
-    //Nav Button Styles
-    .btnContainer {
-      .leftButton,
-      .rightButton {
-        color: $secondaryColor;
-        &:hover {
-          color: $otherColor;
-        }
-      }
-    }
-  }
+//   //   //Nav Button Styles
+//   //   .btnContainer {
+//   //     .leftButton,
+//   //     .rightButton {
+//   //       color: $secondaryColor;
+//   //       &:hover {
+//   //         color: $otherColor;
+//   //       }
+//   //     }
+//   //   }
+//   // }
 
-  footer {
-    background-color: $primaryColor;
+//   // footer {
+//   //   background-color: $primaryColor;
 
-    p {
-      color: $otherColor;
-    }
-  }
-}
+//   //   p {
+//   //     color: $otherColor;
+//   //   }
+//   // }
+// }
 
 body {
+  background-color: $primaryColor;
+  color: $otherColor;
   font-family: 'Open Sans', sans-serif;
   transition: 1s;
 
@@ -175,6 +177,7 @@ body {
       align-items: center;
 
       h1 {
+        color: $otherColor;
         text-transform: uppercase;
         text-align: center;
         font-weight: 400;
@@ -204,6 +207,9 @@ body {
         display: flex;
         width: 100%;
         .searchInput {
+          background-color: $primaryColor;
+          color: $otherColor;
+          border: $secondaryColor 1px solid;
           width: 100%;
           border-top-left-radius: 1rem;
           border-bottom-left-radius: 1rem;
@@ -213,6 +219,8 @@ body {
         }
 
         .searchBtn {
+          background-color: $secondaryColor;
+          color: $primaryColor;
           margin: 0;
           width: 10vh;
           border-top-right-radius: 1rem;
@@ -269,6 +277,7 @@ body {
     padding: 1rem;
 
     h2 {
+      color: $secondaryColor;
       text-transform: uppercase;
       font-weight: 400;
       letter-spacing: 4px;
@@ -278,10 +287,15 @@ body {
     .btnContainer {
       .leftButton,
       .rightButton {
+        color: $secondaryColor;
         background: none;
         border: none;
         cursor: pointer;
         font-size: 1.5rem;
+
+        &:hover {
+          color: $otherColor;
+        }
       }
     }
   }
@@ -328,6 +342,7 @@ body {
       }
 
       a {
+        color: $otherColor;
         text-decoration: none;
       }
 
@@ -427,16 +442,17 @@ body {
   }
 
   footer {
+    background-color: $primaryColor;
     position: fixed;
     padding: 0.5rem 1rem;
     z-index: 10;
     height: 10pvh;
-
     bottom: 0px;
     left: 0px;
     right: 0px;
 
     p {
+      color: $otherColor;
       text-transform: uppercase;
       font-weight: 300;
       letter-spacing: 4px;

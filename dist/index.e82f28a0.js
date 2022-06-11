@@ -505,7 +505,7 @@ function hmrAcceptRun(bundle, id) {
 },{}],"dV6cC":[function(require,module,exports) {
 require("dotenv").config();
 const apiKey = "5dba95e581584ef61f28fcb8642f6a9a";
-//Get Containers/Items
+//Get Containers/Items/Buttons
 const trendingContainer = document.getElementById("trending");
 const searchContainer = document.getElementById("searchContainer");
 const movieContainer = document.querySelectorAll(".movieContainer");
@@ -528,19 +528,23 @@ const searchBtn = document.getElementById("searchBtn");
 const toggleColorScheme = document.getElementById("toggleColorScheme");
 const button = document.getElementById("colorModeIcon");
 let lightMode = localStorage.getItem("lightMode");
+//Enable Light Mode
 const enableLightMode = ()=>{
     document.body.classList.add("light");
     button.classList.add("fa-moon");
     button.classList.remove("fa-sun");
     localStorage.setItem("lightMode", "enabled");
 };
+//Disable Light Mode
 const disableLightMode = ()=>{
     document.body.classList.remove("light");
     button.classList.remove("fa-moon");
     button.classList.add("fa-sun");
     localStorage.setItem("lightMode", null);
 };
+//Load Light Mode If Enabled On Previous Visit
 if (lightMode === "enabled") enableLightMode();
+//Toggle Light Mode On/Off
 toggleColorScheme.addEventListener("click", (e)=>{
     lightMode = localStorage.getItem("lightMode");
     if (lightMode !== "enabled") enableLightMode();
@@ -563,8 +567,10 @@ async function getMoviesAndShowsBySearch(searchInput1) {
     searchHeading.innerHTML = `Search Results For <span>${searchInput1}</span>:`;
     searchHeading.className = "searchHeading";
     container.insertBefore(searchHeading, searchContainer);
-    results.forEach((item)=>{
-        html += `
+    try {
+        if (results !== null) {
+            results.forEach((item)=>{
+                html += `
       <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
           <a href="#" id="viewItem" class="viewItem">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4 class="emptyImgMsg">No Poster Available For This Movie/Show</h4>'}
@@ -572,10 +578,15 @@ async function getMoviesAndShowsBySearch(searchInput1) {
           <h4>${item.title ? item.title : item.name}</h4>
       </div>
     `;
-    });
-    searchContainer.innerHTML = html;
-    removePreLoadedContent();
+            });
+            searchContainer.innerHTML = html;
+            removePreLoadedContent();
+        } else console.log("No Results Found");
+    } catch (error) {
+        console.log(error);
+    }
 }
+//Remove Pre-Loaded Content For Search Results
 function removePreLoadedContent() {
     movieContainer.forEach((movieContainers)=>{
         movieContainers.remove();
@@ -637,15 +648,19 @@ async function getComedyMovies() {
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
-    results.forEach((item)=>{
-        html += `
+    try {
+        results.forEach((item)=>{
+            html += `
         <div class="movieItem" >
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This Movie</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
-        comedyMovies.innerHTML = html;
-    });
+            comedyMovies.innerHTML = html;
+        });
+    } catch (error) {
+        if (results === null) console.log("No Results Found");
+    }
 }
 getComedyMovies();
 //Get Horror Movies
@@ -818,7 +833,7 @@ async function getRealityTv() {
     });
 }
 getRealityTv();
-//Content Carousel
+//Arrow Btn Scroll Carousel
 function carousel() {
     let leftBtn = document.querySelectorAll("#leftButton");
     let rightBtn = document.querySelectorAll("#rightButton");
@@ -908,6 +923,7 @@ function carousel() {
         }));
 }
 carousel();
+//Generate Footer Content
 function generateFooter() {
     let footer = document.getElementById("footer");
     let date = new Date().getFullYear();

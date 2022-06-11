@@ -10,6 +10,7 @@ $primaryColor: #001524;
 $secondaryColor: #ffc300;
 $otherColor: #fefefe;
 
+//Light Theme Styles
 .light {
   background-color: $otherColor;
   color: $primaryColor;
@@ -85,81 +86,7 @@ $otherColor: #fefefe;
   }
 }
 
-// .dark {
-//   // background-color: $primaryColor;
-//   // color: $otherColor;
-
-//   // header {
-//   //   .navContainer {
-//   //     h1 {
-//   //       color: $otherColor;
-//   //       letter-spacing: 4px;
-
-//   //       &:hover {
-//   //         color: $secondaryColor;
-//   //       }
-//   //     }
-
-//   //     a {
-//   //       color: $otherColor;
-//   //       font-size: 2rem;
-
-//   //       &:hover {
-//   //         color: $secondaryColor;
-//   //       }
-//   //     }
-//   //   }
-//   // }
-
-//   // .formSection {
-//   //   .formContainer {
-//   //     .searchInput {
-//   //       background-color: $primaryColor;
-//   //       color: $otherColor;
-//   //       border: $secondaryColor 1px solid;
-//   //     }
-
-//   //     .searchBtn {
-//   //       background-color: $secondaryColor;
-//   //       color: $primaryColor;
-//   //     }
-//   //   }
-//   // }
-
-//   // .searchContainer {
-//   //   .searchItem {
-//   //     a {
-//   //       color: $otherColor;
-//   //     }
-//   //   }
-//   // }
-
-//   // .headingContainer {
-//   //   h2 {
-//   //     color: $secondaryColor;
-//   //   }
-
-//   //   //Nav Button Styles
-//   //   .btnContainer {
-//   //     .leftButton,
-//   //     .rightButton {
-//   //       color: $secondaryColor;
-//   //       &:hover {
-//   //         color: $otherColor;
-//   //       }
-//   //     }
-//   //   }
-//   // }
-
-//   // footer {
-//   //   background-color: $primaryColor;
-
-//   //   p {
-//   //     color: $otherColor;
-//   //   }
-//   // }
-// }
-
+//Primary/Dark Theme Styles
 body {
   background-color: $primaryColor;
   color: $otherColor;
@@ -168,6 +95,7 @@ body {
 
   //Header Styles
   header {
+    //Navbar Styles
     .navContainer {
       margin-top: 1rem;
       margin-inline: 1rem;
@@ -201,6 +129,7 @@ body {
       }
     }
 
+    //Form Styles
     .formSection {
       padding: 1rem;
       .formContainer {
@@ -241,6 +170,7 @@ body {
       border-bottom: solid 3px $secondaryColor;
       padding-bottom: 1rem;
 
+      //Trending Item Styles
       .trendingItem {
         scroll-snap-align: start;
         flex: 0 0 100%;
@@ -300,10 +230,12 @@ body {
     }
   }
 
+  //Container Base Styles
   .container {
     max-height: 100vh;
   }
 
+  //Search Heading Styles
   .searchHeading {
     text-transform: uppercase;
     font-weight: 400;
@@ -316,12 +248,15 @@ body {
       color: $secondaryColor;
     }
   }
+
+  //Search Container Styles
   .searchContainer {
     display: grid;
     overflow: hidden;
     margin-inline: 1rem;
     gap: 1rem;
 
+    //Search Item Styles
     .searchItem {
       display: flex;
       justify-content: center;
@@ -364,6 +299,7 @@ body {
     }
   }
 
+  //Movie Items Container Styles
   .movieItemsContainer {
     display: flex;
     margin-inline: 1rem;
@@ -372,6 +308,7 @@ body {
     scroll-snap-type: x mandatory;
     overflow: hidden;
 
+    //Movie Item Styles
     .movieItem {
       scroll-snap-align: start;
       flex: 0 0 100%;
@@ -400,10 +337,12 @@ body {
     }
   }
 
+  //TV Container Styles
   .tvContainer:last-of-type {
     padding-bottom: 3.5rem;
   }
 
+  //TV Item Styles
   .tvItemsContainer {
     display: flex;
     margin-inline: 1rem;
@@ -415,6 +354,7 @@ body {
       padding-bottom: 1rem;
     }
 
+    //TV Item Styles
     .tvItem {
       scroll-snap-align: start;
       flex: 0 0 100%;
@@ -441,6 +381,7 @@ body {
     }
   }
 
+  //Footer Styles
   footer {
     background-color: $primaryColor;
     position: fixed;
@@ -462,6 +403,7 @@ body {
   }
 }
 
+//Styles for 750px and higher
 @media only screen and (min-width: 750px) {
   body {
     header {
@@ -493,6 +435,7 @@ body {
   }
 }
 
+//Styles for 900px and higher
 @media only screen and (min-width: 900px) {
   body {
     header {
@@ -524,6 +467,7 @@ body {
   }
 }
 
+//Styles for 1200px and higher
 @media only screen and (min-width: 1200px) {
   body {
     header {

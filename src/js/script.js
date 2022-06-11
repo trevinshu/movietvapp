@@ -1,7 +1,7 @@
 require('dotenv').config();
 const apiKey = process.env.API_KEY;
 
-//Get Containers/Items
+//Get Containers/Items/Buttons
 const trendingContainer = document.getElementById('trending');
 const searchContainer = document.getElementById('searchContainer');
 const movieContainer = document.querySelectorAll('.movieContainer');
@@ -25,6 +25,7 @@ const toggleColorScheme = document.getElementById('toggleColorScheme');
 const button = document.getElementById('colorModeIcon');
 let lightMode = localStorage.getItem('lightMode');
 
+//Enable Light Mode
 const enableLightMode = () => {
   document.body.classList.add('light');
   button.classList.add('fa-moon');
@@ -32,6 +33,7 @@ const enableLightMode = () => {
   localStorage.setItem('lightMode', 'enabled');
 };
 
+//Disable Light Mode
 const disableLightMode = () => {
   document.body.classList.remove('light');
   button.classList.remove('fa-moon');
@@ -39,10 +41,12 @@ const disableLightMode = () => {
   localStorage.setItem('lightMode', null);
 };
 
+//Load Light Mode If Enabled On Previous Visit
 if (lightMode === 'enabled') {
   enableLightMode();
 }
 
+//Toggle Light Mode On/Off
 toggleColorScheme.addEventListener('click', (e) => {
   lightMode = localStorage.getItem('lightMode');
   if (lightMode !== 'enabled') {
@@ -66,14 +70,15 @@ async function getMoviesAndShowsBySearch(searchInput) {
   let data = await response.json();
   let results = data.results.slice(0, 10);
   let html = '';
-
   let searchHeading = document.createElement('h2');
   searchHeading.innerHTML = `Search Results For <span>${searchInput}</span>:`;
   searchHeading.className = 'searchHeading';
   container.insertBefore(searchHeading, searchContainer);
 
-  results.forEach((item) => {
-    html += `
+  try {
+    if (results !== null) {
+      results.forEach((item) => {
+        html += `
       <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
           <a href="#" id="viewItem" class="viewItem">
             ${
@@ -85,12 +90,18 @@ async function getMoviesAndShowsBySearch(searchInput) {
           <h4>${item.title ? item.title : item.name}</h4>
       </div>
     `;
-  });
-
-  searchContainer.innerHTML = html;
-  removePreLoadedContent();
+      });
+      searchContainer.innerHTML = html;
+      removePreLoadedContent();
+    } else {
+      console.log('No Results Found');
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
+//Remove Pre-Loaded Content For Search Results
 function removePreLoadedContent() {
   movieContainer.forEach((movieContainers) => {
     movieContainers.remove();
@@ -158,15 +169,22 @@ async function getComedyMovies() {
   let data = await response.json();
   let results = data.results.slice(0, 10);
   let html = '';
-  results.forEach((item) => {
-    html += `
+
+  try {
+    results.forEach((item) => {
+      html += `
         <div class="movieItem" >
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
      `;
-    comedyMovies.innerHTML = html;
-  });
+      comedyMovies.innerHTML = html;
+    });
+  } catch (error) {
+    if (results === null) {
+      console.log('No Results Found');
+    }
+  }
 }
 getComedyMovies();
 
@@ -364,7 +382,7 @@ async function getRealityTv() {
 }
 getRealityTv();
 
-//Content Carousel
+//Arrow Btn Scroll Carousel
 function carousel() {
   let leftBtn = document.querySelectorAll('#leftButton');
   let rightBtn = document.querySelectorAll('#rightButton');
@@ -462,6 +480,7 @@ function carousel() {
 }
 carousel();
 
+//Generate Footer Content
 function generateFooter() {
   let footer = document.getElementById('footer');
   let date = new Date().getFullYear();

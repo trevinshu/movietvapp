@@ -424,7 +424,23 @@ body footer p {
   }
 }
 
-@media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 900px) {
+  body header .trending .trendingItem {
+    max-width: 33%;
+    flex: 0 0 33%;
+  }
+
+  body .searchContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  body .movieItemsContainer .movieItem, body .tvItemsContainer .tvItem {
+    max-width: 33%;
+    flex: 0 0 33%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   body header {
     margin-inline: 1.5rem;
   }
@@ -449,25 +465,21 @@ body footer p {
   }
 
   body header .trending .trendingItem {
-    max-width: 20%;
-    flex: 0 0 20%;
+    max-width: 25%;
+    flex: 0 0 25%;
   }
 
   body .container {
     margin-inline: 1.5rem;
   }
 
-  body .searchHeading {
-    text-align: left;
-  }
-
-  body .searchContainer {
+  body .container .searchContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  body .movieItemsContainer .movieItem, body .tvItemsContainer .tvItem {
-    max-width: 20%;
-    flex: 0 0 20%;
+  body .container .movieItemsContainer .movieItem, body .container .tvItemsContainer .tvItem {
+    max-width: 25%;
+    flex: 0 0 25%;
   }
 }
 

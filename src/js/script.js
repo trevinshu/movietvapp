@@ -24,6 +24,7 @@ const toggleColorScheme = document.getElementById('toggleColorScheme');
 const button = document.getElementById('colorModeIcon');
 let lightMode = localStorage.getItem('lightMode');
 const modalContainer = document.getElementById('modalContainer');
+let footer = document.getElementById('footer');
 const modalInfo = document.getElementById('modalContent');
 
 //Event Listeners
@@ -173,12 +174,16 @@ async function getInfo(type, id) {
 function closeModal(e) {
   const closeModal = e.target.parentElement.parentElement.parentElement.parentElement;
   closeModal.classList.remove('showModal');
+  document.body.style.overflow = 'scroll';
+  footer.style.visibility = 'visible';
   e.preventDefault();
 }
 
 //Function to display tv show info in modal
 function showTvModal(info, rating) {
   modalContainer.classList.add('showModal');
+  document.body.style.overflow = 'hidden';
+  footer.style.visibility = 'hidden';
   console.log(rating);
   let html = `
     <div class="modalHeader">
@@ -546,7 +551,6 @@ carousel();
 
 //Generate Footer Content
 function generateFooter() {
-  let footer = document.getElementById('footer');
   let date = new Date().getFullYear();
 
   footer.innerHTML = `

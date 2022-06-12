@@ -490,11 +490,14 @@ body {
 
   //Footer Styles
   footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $primaryColor;
     position: fixed;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     z-index: 5;
-    height: 8vh;
+    height: 10vh;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -538,6 +541,10 @@ body {
         flex: 0 0 50%;
         max-width: 50%;
       }
+    }
+
+    footer {
+      height: 5vh;
     }
   }
 }

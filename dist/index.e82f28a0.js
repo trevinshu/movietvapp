@@ -528,6 +528,7 @@ const toggleColorScheme = document.getElementById("toggleColorScheme");
 const button = document.getElementById("colorModeIcon");
 let lightMode = localStorage.getItem("lightMode");
 const modalContainer = document.getElementById("modalContainer");
+let footer = document.getElementById("footer");
 const modalInfo = document.getElementById("modalContent");
 //Event Listeners
 trendingContainer.addEventListener("click", viewSelectedItem);
@@ -648,11 +649,15 @@ async function getInfo(type, id) {
 function closeModal(e) {
     const closeModal1 = e.target.parentElement.parentElement.parentElement.parentElement;
     closeModal1.classList.remove("showModal");
+    document.body.style.overflow = "scroll";
+    footer.style.visibility = "visible";
     e.preventDefault();
 }
 //Function to display tv show info in modal
 function showTvModal(info, rating) {
     modalContainer.classList.add("showModal");
+    document.body.style.overflow = "hidden";
+    footer.style.visibility = "hidden";
     console.log(rating);
     let html = `
     <div class="modalHeader">
@@ -983,7 +988,6 @@ function carousel() {
 carousel();
 //Generate Footer Content
 function generateFooter() {
-    let footer = document.getElementById("footer");
     let date = new Date().getFullYear();
     footer.innerHTML = `
       <p>Designed & Developed by Trevin Shu &copy; ${date}</p>

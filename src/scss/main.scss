@@ -299,6 +299,113 @@ body {
     }
   }
 
+  //Modal Styles
+  .modalContainer {
+    visibility: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+
+    .modalContent {
+      background-color: $primaryColor;
+      height: 100vh;
+      width: 100vw;
+      overflow-y: scroll;
+      border-radius: 1rem;
+      z-index: 100;
+      padding: 1.5rem;
+
+      .modalHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          text-transform: uppercase;
+          letter-spacing: 4px;
+          font-size: 2rem;
+        }
+
+        .closeModal {
+          height: 40px;
+          width: 40px;
+          background-color: $secondaryColor;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          text-align: center;
+
+          i {
+            color: $primaryColor;
+            font-size: 2rem;
+            padding: 0;
+          }
+        }
+      }
+
+      .showTags {
+        padding-block: 1rem;
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        gap: 0.75rem;
+
+        p {
+          span {
+            color: $secondaryColor;
+          }
+        }
+      }
+
+      .innerContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-block: 2rem;
+        img {
+          width: 50%;
+
+          border-radius: 1rem;
+        }
+
+        .innerContentInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          .description {
+            h3 {
+              font-size: 1.2rem;
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              font-weight: 700;
+              padding-bottom: 0.5rem;
+            }
+
+            p {
+              line-height: 2;
+              font-weight: 300;
+            }
+          }
+
+          .creator {
+            padding-bottom: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  //Show Modal
+  .showModal {
+    visibility: visible;
+    transition: all ease-in-out 1s;
+  }
+
   //Movie Items Container Styles
   .movieItemsContainer {
     display: flex;
@@ -386,8 +493,8 @@ body {
     background-color: $primaryColor;
     position: fixed;
     padding: 0.5rem 1rem;
-    z-index: 10;
-    height: 10pvh;
+    z-index: 5;
+    height: 8vh;
     bottom: 0px;
     left: 0px;
     right: 0px;

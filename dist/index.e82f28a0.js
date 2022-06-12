@@ -509,7 +509,6 @@ const apiKey = "5dba95e581584ef61f28fcb8642f6a9a";
 const trendingContainer = document.getElementById("trending");
 const searchContainer = document.getElementById("searchContainer");
 const movieContainer = document.querySelectorAll(".movieContainer");
-const container = document.getElementById("container");
 const tvContainer = document.querySelectorAll(".tvContainer");
 const actionMovies = document.getElementById("actionMovies");
 const comedyMovies = document.getElementById("comedyMovies");
@@ -528,6 +527,11 @@ const searchBtn = document.getElementById("searchBtn");
 const toggleColorScheme = document.getElementById("toggleColorScheme");
 const button = document.getElementById("colorModeIcon");
 let lightMode = localStorage.getItem("lightMode");
+const modalContainer = document.getElementById("modalContainer");
+const modalInfo = document.getElementById("modalContent");
+//Event Listeners
+trendingContainer.addEventListener("click", viewSelectedItem);
+modalInfo.addEventListener("click", closeModal);
 //Enable Light Mode
 const enableLightMode = ()=>{
     document.body.classList.add("light");
@@ -619,16 +623,65 @@ async function getTrendingMovies() {
     });
 }
 getTrendingMovies();
-// trendingContainer.addEventListener('click', viewSelectedItem);
-// function viewSelectedItem(e) {
-//   const imgBtn = e.target.parentElement.parentElement;
-//   if (imgBtn.dataset.type === 'tv') {
-//     console.log(`tv selected ${imgBtn.dataset.id}`);
-//   } else {
-//     console.log(`movie selected ${imgBtn.dataset.id}`);
-//   }
-//   e.preventDefault();
-// }
+//Function to View Selected Item
+function viewSelectedItem(e) {
+    const imgBtn = e.target.parentElement.parentElement;
+    const type = imgBtn.dataset.type;
+    const id = imgBtn.dataset.id;
+    getInfo(type, id);
+    e.preventDefault();
+}
+//API Call to Get Movie/Show Info
+async function getInfo(type, id) {
+    if (type === "tv") {
+        let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`);
+        let data = await response.json();
+        let responseTwo = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=${apiKey}`);
+        let rating = await responseTwo.json();
+        showTvModal(data, rating);
+    } else {
+        let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
+        let data = await response.json();
+    }
+}
+//Close Modal
+function closeModal(e) {
+    const closeModal1 = e.target.parentElement.parentElement.parentElement.parentElement;
+    closeModal1.classList.remove("showModal");
+    e.preventDefault();
+}
+//Function to display tv show info in modal
+function showTvModal(info, rating) {
+    modalContainer.classList.add("showModal");
+    console.log(rating);
+    let html = `
+    <div class="modalHeader">
+      <h2>${info.name ? info.name : info.title}</h2>
+      <button id="closeModal" class="closeModal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="showTags">
+      <p><span>Seasons:</span> ${info.number_of_seasons}</p>
+      <p><span>Rating:</span> ${info.vote_average * 10}%</p>
+      <p><span>Runtime:</span> ${info.episode_run_time} minutes</p>
+      <p><span>Genre:</span>${info.genres.map((tag)=>` ${tag.name}`)}</p>
+      <p><span>Content Rating: </span>${rating.results[0].rating}</p>
+    </div>
+    <div class="innerContent">  
+      ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This Movie/Show</h4>"}
+      <div class="innerContentInfo">
+        <div class="description">
+          <h3>Description:</h3>
+          <p>${info.overview}</p>
+        </div>
+        <div class="creator">
+        <h3>Created By:</h3>
+        <p>${info.created_by[0].name}</p>
+      </div>
+      </div>
+    </div>
+  `;
+    modalInfo.innerHTML = html;
+}
 //Get Action Movies
 async function getActionMovies() {
     let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);

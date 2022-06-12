@@ -563,14 +563,9 @@ async function getMoviesAndShowsBySearch(searchInput1) {
     let data = await response.json();
     let results = data.results.slice(0, 10);
     let html = "";
-    let searchHeading = document.createElement("h2");
-    searchHeading.innerHTML = `Search Results For <span>${searchInput1}</span>:`;
-    searchHeading.className = "searchHeading";
-    container.insertBefore(searchHeading, searchContainer);
     try {
-        if (results !== null) {
-            results.forEach((item)=>{
-                html += `
+        if (data.total_results !== 0) results.forEach((item)=>{
+            html += `
       <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
           <a href="#" id="viewItem" class="viewItem">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4 class="emptyImgMsg">No Poster Available For This Movie/Show</h4>'}
@@ -578,13 +573,23 @@ async function getMoviesAndShowsBySearch(searchInput1) {
           <h4>${item.title ? item.title : item.name}</h4>
       </div>
     `;
-            });
+            resultMsg("searchHeading", `Search Results For <span>${searchInput1}</span>:`);
             searchContainer.innerHTML = html;
             removePreLoadedContent();
-        } else console.log("No Results Found");
-    } catch (error) {
-        console.log(error);
+        });
+        else {
+            resultMsg("searchHeading", `No Results Found For <span>${searchInput1}</span>:`);
+            searchContainer.innerHTML = "";
+            removePreLoadedContent();
+        }
+    } catch (err) {
+        console.log(err);
     }
+}
+function resultMsg(className, msg) {
+    let msgContainer = document.getElementById("msgContainer");
+    let resultMsg1 = `<h2 class="${className}">${msg}</h2>`;
+    msgContainer.innerHTML = resultMsg1;
 }
 //Remove Pre-Loaded Content For Search Results
 function removePreLoadedContent() {

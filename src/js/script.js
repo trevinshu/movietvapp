@@ -70,13 +70,8 @@ async function getMoviesAndShowsBySearch(searchInput) {
   let data = await response.json();
   let results = data.results.slice(0, 10);
   let html = '';
-  let searchHeading = document.createElement('h2');
-  searchHeading.innerHTML = `Search Results For <span>${searchInput}</span>:`;
-  searchHeading.className = 'searchHeading';
-  container.insertBefore(searchHeading, searchContainer);
-
   try {
-    if (results !== null) {
+    if (data.total_results !== 0) {
       results.forEach((item) => {
         html += `
       <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
@@ -90,15 +85,25 @@ async function getMoviesAndShowsBySearch(searchInput) {
           <h4>${item.title ? item.title : item.name}</h4>
       </div>
     `;
+        resultMsg('searchHeading', `Search Results For <span>${searchInput}</span>:`);
+        searchContainer.innerHTML = html;
+        removePreLoadedContent();
       });
-      searchContainer.innerHTML = html;
-      removePreLoadedContent();
     } else {
-      console.log('No Results Found');
+      resultMsg('searchHeading', `No Results Found For <span>${searchInput}</span>:`);
+      searchContainer.innerHTML = '';
+      removePreLoadedContent();
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
+}
+
+function resultMsg(className, msg) {
+  let msgContainer = document.getElementById('msgContainer');
+  let resultMsg = `<h2 class="${className}">${msg}</h2>`;
+
+  msgContainer.innerHTML = resultMsg;
 }
 
 //Remove Pre-Loaded Content For Search Results

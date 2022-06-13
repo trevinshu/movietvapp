@@ -374,11 +374,11 @@ body .modalContainer .modalContent .innerContent {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  padding-block: 2rem;
+  padding-block: 1rem;
   display: flex;
 }
 
-body .modalContainer .modalContent .innerContent img {
+body .modalContainer .modalContent .innerContent .poster {
   width: 50%;
   border-radius: 1rem;
 }
@@ -392,6 +392,7 @@ body .modalContainer .modalContent .innerContent .innerContentInfo {
 body .modalContainer .modalContent .innerContent .innerContentInfo .description h3 {
   text-transform: uppercase;
   letter-spacing: 4px;
+  color: #ffc300;
   padding-bottom: .5rem;
   font-size: 1.2rem;
   font-weight: 700;
@@ -402,8 +403,58 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .description 
   line-height: 2;
 }
 
-body .modalContainer .modalContent .innerContent .innerContentInfo .creator {
-  padding-bottom: 1rem;
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer h3 {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #ffc300;
+  padding-bottom: .5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo img {
+  width: 50%;
+  border-radius: 1rem;
+  padding-block: 1rem;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo .altText {
+  padding-block: 1rem;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo h4 {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 4px;
+  padding-bottom: .5rem;
+  font-weight: 300;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo h4 span {
+  color: #ffc300;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .creator h3 {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #ffc300;
+  padding-bottom: .5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .creator p {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding-bottom: .5rem;
+  font-weight: 300;
 }
 
 body .showModal {

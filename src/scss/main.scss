@@ -366,10 +366,9 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
-        padding-block: 2rem;
-        img {
+        padding-block: 1rem;
+        .poster {
           width: 50%;
-
           border-radius: 1rem;
         }
 
@@ -384,6 +383,7 @@ body {
               letter-spacing: 4px;
               font-weight: 700;
               padding-bottom: 0.5rem;
+              color: $secondaryColor;
             }
 
             p {
@@ -392,8 +392,61 @@ body {
             }
           }
 
+          .castContainer {
+            h3 {
+              font-size: 1.2rem;
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              font-weight: 700;
+              padding-bottom: 0.5rem;
+              color: $secondaryColor;
+            }
+
+            .castInfo {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              img {
+                border-radius: 1rem;
+                padding-block: 1rem;
+                width: 50%;
+              }
+
+              .altText {
+                padding-block: 1rem;
+              }
+
+              h4 {
+                text-transform: uppercase;
+                text-align: center;
+                letter-spacing: 4px;
+                font-weight: 300;
+                padding-bottom: 0.5rem;
+
+                span {
+                  color: $secondaryColor;
+                }
+              }
+            }
+          }
+
           .creator {
-            padding-bottom: 1rem;
+            h3 {
+              font-size: 1.2rem;
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              font-weight: 700;
+              padding-bottom: 0.5rem;
+              color: $secondaryColor;
+            }
+
+            p {
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              font-weight: 300;
+              padding-bottom: 0.5rem;
+            }
           }
         }
       }

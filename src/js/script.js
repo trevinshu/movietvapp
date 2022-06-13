@@ -162,7 +162,10 @@ async function getInfo(type, id) {
     let responseTwo = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=${apiKey}`);
     let rating = await responseTwo.json();
 
-    showTvModal(data, rating);
+    let responseThree = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`);
+    let cast = await responseThree.json();
+
+    showTvModal(data, rating, cast);
   } else {
     let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
     let data = await response.json();
@@ -180,7 +183,7 @@ function closeModal(e) {
 }
 
 //Function to display tv show info in modal
-function showTvModal(info, rating) {
+function showTvModal(info, rating, cast) {
   modalContainer.classList.add('showModal');
   document.body.style.overflow = 'hidden';
   footer.style.visibility = 'hidden';
@@ -198,16 +201,29 @@ function showTvModal(info, rating) {
       <p><span>Content Rating: </span>${rating.results[0].rating}</p>
     </div>
     <div class="innerContent">  
-      ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
+      ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
       <div class="innerContentInfo">
         <div class="description">
           <h3>Description:</h3>
           <p>${info.overview}</p>
         </div>
+        <div class="castContainer">
+          <h3>Cast:</h3>
+          ${cast.cast
+            .map(
+              (tag) =>
+                `<div class="castInfo">${
+                  tag.profile_path
+                    ? `<img src="https://image.tmdb.org/t/p/original/${tag.profile_path}" loading="lazy" alt="actor photo"/>`
+                    : '<h4 class="altText">No Picture Available For This Actor/Actress</h4>'
+                } <h4>${tag.name} as <span>${tag.character}</span></h4></div>`
+            )
+            .join(' ')}
+        </div>
         <div class="creator">
-        <h3>Created By:</h3>
-        <p>${info.created_by[0].name}</p>
-      </div>
+          <h3>Created By:</h3>
+          <p>${info.created_by[0].name}</p>
+        </div>
       </div>
     </div>
   `;

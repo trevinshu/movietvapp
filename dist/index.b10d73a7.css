@@ -322,7 +322,7 @@ body .modalContainer {
 }
 
 body .modalContainer .modalContent {
-  height: 100vh;
+  height: 100.1vh;
   width: 100vw;
   z-index: 100;
   background-color: #001524;
@@ -348,13 +348,13 @@ body .modalContainer .modalContent .modalHeader .closeModal {
   width: 40px;
   cursor: pointer;
   text-align: center;
-  background-color: #ffc300;
+  background: none;
   border: none;
   border-radius: 50%;
 }
 
 body .modalContainer .modalContent .modalHeader .closeModal i {
-  color: #001524;
+  color: #ffc300;
   padding: 0;
   font-size: 2rem;
 }
@@ -374,13 +374,13 @@ body .modalContainer .modalContent .innerContent {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  padding-block: 1rem;
   display: flex;
 }
 
 body .modalContainer .modalContent .innerContent .poster {
   width: 50%;
   border-radius: 1rem;
+  padding-top: 1rem;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo {
@@ -416,16 +416,21 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .castContaine
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 1rem;
   display: flex;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo img {
-  width: 50%;
-  border-radius: 1rem;
-  padding-block: 1rem;
+  clip-path: circle();
+  width: 100%;
+  max-width: 30%;
+  margin-block: -25px;
+  padding-bottom: 1rem;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo .altText {
+  border-bottom: 1px solid #ffc300;
+  margin-bottom: 1rem;
   padding-block: 1rem;
 }
 

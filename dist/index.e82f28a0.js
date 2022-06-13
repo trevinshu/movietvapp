@@ -686,7 +686,7 @@ function showTvModal(info, rating, cast) {
         </div>
         <div class="creator">
           <h3>Created By:</h3>
-          <p>${info.created_by[0].name}</p>
+          <p>${info.created_by.map((tag)=>`${tag.name}`).join(" & ")}</p>
         </div>
       </div>
     </div>

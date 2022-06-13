@@ -313,7 +313,7 @@ body {
 
     .modalContent {
       background-color: $primaryColor;
-      height: 100vh;
+      height: calc(100vh + 0.1vh);
       width: 100vw;
       overflow-y: scroll;
       border-radius: 1rem;
@@ -334,14 +334,14 @@ body {
         .closeModal {
           height: 40px;
           width: 40px;
-          background-color: $secondaryColor;
           border: none;
           border-radius: 50%;
           cursor: pointer;
+          background: none;
           text-align: center;
 
           i {
-            color: $primaryColor;
+            color: $secondaryColor;
             font-size: 2rem;
             padding: 0;
           }
@@ -366,8 +366,8 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
-        padding-block: 1rem;
         .poster {
+          padding-top: 1rem;
           width: 50%;
           border-radius: 1rem;
         }
@@ -403,18 +403,23 @@ body {
             }
 
             .castInfo {
+              padding-top: 1rem;
               display: flex;
               justify-content: center;
               align-items: center;
               flex-direction: column;
               img {
-                border-radius: 1rem;
-                padding-block: 1rem;
-                width: 50%;
+                clip-path: circle();
+                margin-block: -25px;
+                width: 100%;
+                max-width: 30%;
+                padding-bottom: 1rem;
               }
 
               .altText {
                 padding-block: 1rem;
+                border-bottom: solid 1px $secondaryColor;
+                margin-bottom: 1rem;
               }
 
               h4 {

@@ -28,7 +28,8 @@ let footer = document.getElementById('footer');
 const modalInfo = document.getElementById('modalContent');
 
 //Event Listeners
-trendingContainer.addEventListener('click', viewSelectedItem);
+trendingContainer.addEventListener('click', viewSelectedMovieTvItem);
+actionTv.addEventListener('click', viewSelectedTvItem);
 modalInfo.addEventListener('click', closeModal);
 
 //Enable Light Mode
@@ -105,6 +106,7 @@ async function getMoviesAndShowsBySearch(searchInput) {
   }
 }
 
+//Draw Message For Search Result
 function resultMsg(className, msg) {
   let msgContainer = document.getElementById('msgContainer');
   let resultMsg = `<h2 class="${className}">${msg}</h2>`;
@@ -143,10 +145,20 @@ async function getTrendingMovies() {
 }
 getTrendingMovies();
 
-//Function to View Selected Item
-function viewSelectedItem(e) {
+//Function to View Selected Movie/TV Show
+function viewSelectedMovieTvItem(e) {
   const imgBtn = e.target.parentElement.parentElement;
   const type = imgBtn.dataset.type;
+  const id = imgBtn.dataset.id;
+
+  getInfo(type, id);
+  e.preventDefault();
+}
+
+//Function to View Selected Movie/TV Show
+function viewSelectedTvItem(e) {
+  const imgBtn = e.target.parentElement;
+  const type = 'tv';
   const id = imgBtn.dataset.id;
 
   getInfo(type, id);
@@ -167,13 +179,20 @@ async function getInfo(type, id) {
 
     showTvModal(data, rating, cast);
   } else {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
+    let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`);
     let data = await response.json();
+
+    let responseTwo = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=${apiKey}`);
+    let rating = await responseTwo.json();
+
+    let responseThree = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`);
+    let cast = await responseThree.json();
+
+    showTvModal(data, rating, cast);
   }
 }
 
 //Close Modal
-
 function closeModal(e) {
   const closeModal = e.target.parentElement.parentElement.parentElement.parentElement;
   closeModal.classList.remove('showModal');
@@ -337,7 +356,7 @@ async function getActionTv() {
   let html = '';
   results.forEach((item) => {
     html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>

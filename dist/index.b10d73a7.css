@@ -322,7 +322,7 @@ body .modalContainer {
 }
 
 body .modalContainer .modalContent {
-  height: 100.1vh;
+  height: 100vh;
   width: 100vw;
   z-index: 100;
   background-color: #001524;

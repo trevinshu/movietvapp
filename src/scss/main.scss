@@ -553,9 +553,8 @@ body {
     align-items: center;
     background-color: $primaryColor;
     position: fixed;
-    padding: 1rem;
     z-index: 5;
-    height: 10vh;
+    padding: 0.75rem;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -599,10 +598,6 @@ body {
         flex: 0 0 50%;
         max-width: 50%;
       }
-    }
-
-    footer {
-      height: 10%;
     }
   }
 }

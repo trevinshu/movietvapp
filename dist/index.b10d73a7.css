@@ -548,11 +548,10 @@ body .tvItemsContainer .tvItem h4 {
 
 body footer {
   z-index: 5;
-  height: 10vh;
   background-color: #001524;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: .75rem;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -582,10 +581,6 @@ body footer p {
   body .movieItemsContainer .movieItem, body .tvItemsContainer .tvItem {
     max-width: 50%;
     flex: 0 0 50%;
-  }
-
-  body footer {
-    height: 10%;
   }
 }
 

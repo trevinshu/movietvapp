@@ -310,6 +310,7 @@ body {
     justify-content: center;
     top: 0;
     left: 0;
+    z-index: 100;
 
     .modalContent {
       background-color: $primaryColor;
@@ -317,7 +318,6 @@ body {
       width: 100vw;
       overflow-y: scroll;
       border-radius: 1rem;
-      z-index: 100;
       padding: 1.5rem;
 
       .modalHeader {

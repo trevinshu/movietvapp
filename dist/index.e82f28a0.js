@@ -533,6 +533,12 @@ const modalInfo = document.getElementById("modalContent");
 //Event Listeners
 trendingContainer.addEventListener("click", viewSelectedMovieTvItem);
 actionTv.addEventListener("click", viewSelectedTvItem);
+comedyTv.addEventListener("click", viewSelectedTvItem);
+documentaryTv.addEventListener("click", viewSelectedTvItem);
+dramaTv.addEventListener("click", viewSelectedTvItem);
+familyTv.addEventListener("click", viewSelectedTvItem);
+kidsTv.addEventListener("click", viewSelectedTvItem);
+realityTv.addEventListener("click", viewSelectedTvItem);
 modalInfo.addEventListener("click", closeModal);
 //Enable Light Mode
 const enableLightMode = ()=>{
@@ -686,7 +692,7 @@ function showTvModal(info, rating, cast) {
       <p><span>Rating:</span> ${info.vote_average * 10}%</p>
       <p><span>Runtime:</span> ${info.episode_run_time} minutes</p>
       <p><span>Genre:</span>${info.genres.map((tag)=>` ${tag.name}`)}</p>
-      <p><span>Content Rating: </span>${rating.results[0].rating}</p>
+      <p><span>Content Rating: </span>${rating.results[0] ? `${rating.results[0].rating}` : `<h4>No Rating Available For This Show</h4>`}</p>
     </div>
     <div class="innerContent">  
       ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>` : "<h4>No Poster Available For This Movie/Show</h4>"}
@@ -701,7 +707,7 @@ function showTvModal(info, rating, cast) {
         </div>
         <div class="creator">
           <h3>Created By:</h3>
-          <p>${info.created_by.map((tag)=>`${tag.name}`).join(" & ")}</p>
+          <p>${info.created_by ? `${info.created_by.map((tag)=>`${tag.name}`).join(" & ")}` : `No Info Available`}</p>
         </div>
       </div>
     </div>
@@ -823,7 +829,7 @@ async function getComedyTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -840,7 +846,7 @@ async function getDocumentaryTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -857,7 +863,7 @@ async function getDramaTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -874,7 +880,7 @@ async function getFamilyTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -891,7 +897,7 @@ async function getKidsTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -908,7 +914,7 @@ async function getRealityTv() {
     let html = "";
     results.forEach((item)=>{
         html += `
-        <div class="tvItem" >
+        <div class="tvItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : "<h4>No Poster Available For This TV Show</h4>"}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>

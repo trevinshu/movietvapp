@@ -76,7 +76,11 @@ $otherColor: #fefefe;
       }
     }
   }
-
+  .modalContainer {
+    .modalContent {
+      background-color: $otherColor;
+    }
+  }
   footer {
     background-color: $otherColor;
 
@@ -317,7 +321,6 @@ body {
       height: 100vh;
       width: 100vw;
       overflow-y: scroll;
-      border-radius: 1rem;
       padding: 1.5rem;
 
       .modalHeader {
@@ -355,6 +358,7 @@ body {
         gap: 0.75rem;
 
         p {
+          text-transform: uppercase;
           span {
             color: $secondaryColor;
           }
@@ -387,8 +391,9 @@ body {
             }
 
             p {
-              line-height: 2;
-              font-weight: 300;
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              font-weight: 400;
             }
           }
 
@@ -426,12 +431,19 @@ body {
                 text-transform: uppercase;
                 text-align: center;
                 letter-spacing: 4px;
-                font-weight: 300;
+                font-weight: 400;
                 padding-bottom: 0.5rem;
 
                 span {
                   color: $secondaryColor;
                 }
+              }
+
+              p {
+                text-transform: uppercase;
+                letter-spacing: 4px;
+                font-weight: 300;
+                padding-bottom: 0.5rem;
               }
             }
           }
@@ -449,7 +461,7 @@ body {
             p {
               text-transform: uppercase;
               letter-spacing: 4px;
-              font-weight: 300;
+              font-weight: 400;
               padding-bottom: 0.5rem;
             }
           }

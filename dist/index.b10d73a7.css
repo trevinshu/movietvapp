@@ -101,7 +101,7 @@ input, button, textarea, select {
   color: #ffc300;
 }
 
-.light footer {
+.light .modalContainer .modalContent, .light footer {
   background-color: #fefefe;
 }
 
@@ -326,7 +326,6 @@ body .modalContainer .modalContent {
   height: 100vh;
   width: 100vw;
   background-color: #001524;
-  border-radius: 1rem;
   padding: 1.5rem;
   overflow-y: scroll;
 }
@@ -366,6 +365,10 @@ body .modalContainer .modalContent .showTags {
   display: grid;
 }
 
+body .modalContainer .modalContent .showTags p {
+  text-transform: uppercase;
+}
+
 body .modalContainer .modalContent .showTags p span {
   color: #ffc300;
 }
@@ -399,8 +402,9 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .description 
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .description p {
-  font-weight: 300;
-  line-height: 2;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer h3 {
@@ -439,11 +443,18 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .castContaine
   text-align: center;
   letter-spacing: 4px;
   padding-bottom: .5rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo h4 span {
   color: #ffc300;
+}
+
+body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo p {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  padding-bottom: .5rem;
+  font-weight: 300;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo .creator h3 {
@@ -459,7 +470,7 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .creator p {
   text-transform: uppercase;
   letter-spacing: 4px;
   padding-bottom: .5rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 body .showModal {

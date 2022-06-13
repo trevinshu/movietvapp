@@ -223,31 +223,35 @@ function showTvModal(info, rating, cast) {
       <p><span>Rating:</span> ${info.vote_average * 10}%</p>
       <p><span>Runtime:</span> ${info.episode_run_time} minutes</p>
       <p><span>Genre:</span>${info.genres.map((tag) => ` ${tag.name}`)}</p>
-      <p><span>Content Rating: </span>${rating.results[0] ? `${rating.results[0].rating}` : `<h4>No Rating Available For This Show</h4>`}</p>
+      <p><span>Content Rating: </span>${rating.results[0] ? `${rating.results[0].rating}` : `No Rating Available For This Show`}</p>
     </div>
     <div class="innerContent">  
       ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
       <div class="innerContentInfo">
         <div class="description">
           <h3>Description:</h3>
-          <p>${info.overview}</p>
+          <p>${info.overview ? info.overview : `No Overview Available For This Show`}</p>
         </div>
         <div class="castContainer">
           <h3>Cast:</h3>
-          ${cast.cast
-            .map(
-              (tag) =>
-                `<div class="castInfo">${
-                  tag.profile_path
-                    ? `<img src="https://image.tmdb.org/t/p/original/${tag.profile_path}" loading="lazy" alt="actor photo"/>`
-                    : '<h4 class="altText">No Picture Available For This Actor/Actress</h4>'
-                } <h4>${tag.name} as <span>${tag.character}</span></h4></div>`
-            )
-            .join(' ')}
+          ${
+            cast.cast[0]
+              ? cast.cast
+                  .map(
+                    (tag) =>
+                      `<div class="castInfo">${
+                        tag.profile_path
+                          ? `<img src="https://image.tmdb.org/t/p/original/${tag.profile_path}" loading="lazy" alt="actor photo"/>`
+                          : '<h4 class="altText">No Picture Available For This Actor/Actress</h4>'
+                      } <h4>${tag.name} as <span>${tag.character}</span></h4></div>`
+                  )
+                  .join(' ')
+              : `<div class="castInfo"><p>No Cast Info Available For This Show</p></div>`
+          }
         </div>
         <div class="creator">
           <h3>Created By:</h3>
-          <p>${info.created_by ? `${info.created_by.map((tag) => `${tag.name}`).join(' & ')}` : `No Info Available`}</p>
+          <p>${info.created_by[0] ? info.created_by.map((tag) => `${tag.name}`).join(' & ') : `No Creator Info`}</p>
         </div>
       </div>
     </div>

@@ -359,10 +359,9 @@ body .modalContainer .modalContent .modalHeader .closeModal i {
 }
 
 body .modalContainer .modalContent .showTags {
-  grid-template-columns: repeat(1fr);
-  gap: .75rem;
-  padding-block: 1rem;
-  display: grid;
+  gap: .5rem;
+  padding-block: 1.5rem;
+  display: flex;
 }
 
 body .modalContainer .modalContent .showTags p {
@@ -374,16 +373,15 @@ body .modalContainer .modalContent .showTags p span {
 }
 
 body .modalContainer .modalContent .innerContent {
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  display: flex;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  display: grid;
 }
 
-body .modalContainer .modalContent .innerContent .poster {
-  width: 50%;
+body .modalContainer .modalContent .innerContent img {
+  max-width: 50%;
   border-radius: 1rem;
-  padding-top: 1rem;
+  margin: 0 auto;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo {
@@ -392,7 +390,7 @@ body .modalContainer .modalContent .innerContent .innerContentInfo {
   display: flex;
 }
 
-body .modalContainer .modalContent .innerContent .innerContentInfo .description h3 {
+body .modalContainer .modalContent .innerContent .innerContentInfo .description h3, body .modalContainer .modalContent .innerContent .innerContentInfo .cast h3, body .modalContainer .modalContent .innerContent .innerContentInfo .creator h3 {
   text-transform: uppercase;
   letter-spacing: 4px;
   color: #ffc300;
@@ -401,76 +399,18 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .description 
   font-weight: 700;
 }
 
-body .modalContainer .modalContent .innerContent .innerContentInfo .description p {
+body .modalContainer .modalContent .innerContent .innerContentInfo .description p, body .modalContainer .modalContent .innerContent .innerContentInfo .cast p, body .modalContainer .modalContent .innerContent .innerContentInfo .creator p {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 400;
 }
 
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer h3 {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #ffc300;
-  padding-bottom: .5rem;
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 1rem;
-  display: flex;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo img {
-  clip-path: circle();
-  width: 100%;
-  max-width: 30%;
-  margin-block: -25px;
-  padding-bottom: 1rem;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo .altText {
-  border-bottom: 1px solid #ffc300;
-  margin-bottom: 1rem;
-  padding-block: 1rem;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo h4 {
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 4px;
-  padding-bottom: .5rem;
-  font-weight: 400;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo h4 span {
+body .modalContainer .modalContent .innerContent .innerContentInfo .description span, body .modalContainer .modalContent .innerContent .innerContentInfo .cast span, body .modalContainer .modalContent .innerContent .innerContentInfo .creator span {
   color: #ffc300;
 }
 
-body .modalContainer .modalContent .innerContent .innerContentInfo .castContainer .castInfo p {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  padding-bottom: .5rem;
-  font-weight: 300;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .creator h3 {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #ffc300;
-  padding-bottom: .5rem;
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-body .modalContainer .modalContent .innerContent .innerContentInfo .creator p {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  padding-bottom: .5rem;
-  font-weight: 400;
+body .modalContainer .modalContent .innerContent .innerContentInfo .cast p {
+  padding-block: .3rem;
 }
 
 body .showModal {
@@ -609,6 +549,19 @@ body footer p {
     max-width: 33%;
     flex: 0 0 33%;
   }
+
+  body .modalContainer .showTags {
+    justify-content: space-around;
+  }
+
+  body .modalContainer .modalContent .innerContent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  body .modalContainer .modalContent .innerContent img {
+    max-width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -651,6 +604,30 @@ body footer p {
   body .container .movieItemsContainer .movieItem, body .container .tvItemsContainer .tvItem {
     max-width: 25%;
     flex: 0 0 25%;
+  }
+
+  body .modalContainer {
+    backdrop-filter: blur(10px);
+  }
+
+  body .modalContainer .showTags {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  body .modalContainer .modalContent {
+    width: 90vw;
+    height: 90vh;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  body .modalContainer .modalContent .innerContent {
+    grid-template-columns: 30% 70%;
+    gap: 1.5rem;
+  }
+
+  body .modalContainer .modalContent .innerContent img {
+    max-width: 75%;
   }
 }
 

@@ -36,7 +36,13 @@ dramaTv.addEventListener('click', viewSelectedTvItem);
 familyTv.addEventListener('click', viewSelectedTvItem);
 kidsTv.addEventListener('click', viewSelectedTvItem);
 realityTv.addEventListener('click', viewSelectedTvItem);
+actionMovies.addEventListener('click', viewSelectedMovieItem);
+comedyMovies.addEventListener('click', viewSelectedMovieItem);
+horrorMovies.addEventListener('click', viewSelectedMovieItem);
+romanceMovies.addEventListener('click', viewSelectedMovieItem);
+thrillerMovies.addEventListener('click', viewSelectedMovieItem);
 modalInfo.addEventListener('click', closeModal);
+searchContainer.addEventListener('click', viewSelectedMovieTvItem);
 
 //Enable Light Mode
 const enableLightMode = () => {
@@ -82,10 +88,11 @@ async function getMoviesAndShowsBySearch(searchInput) {
   let response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1`);
   let data = await response.json();
   let results = data.results.slice(0, 10);
+  const searchArray = results.filter((res) => res.known_for_department !== 'Directing' && res.known_for_department !== 'Acting');
   let html = '';
   try {
     if (data.total_results !== 0) {
-      results.forEach((item) => {
+      searchArray.forEach((item) => {
         html += `
       <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
           <a href="#" id="viewItem" class="viewItem">
@@ -171,6 +178,15 @@ function viewSelectedTvItem(e) {
   e.preventDefault();
 }
 
+function viewSelectedMovieItem(e) {
+  const imgBtn = e.target.parentElement;
+  const type = 'movie';
+  const id = imgBtn.dataset.id;
+
+  getInfo(type, id);
+  e.preventDefault();
+}
+
 //API Call to Get Movie/Show Info
 async function getInfo(type, id) {
   if (type === 'tv') {
@@ -185,25 +201,26 @@ async function getInfo(type, id) {
 
     showTvModal(data, rating, cast);
   } else {
-    let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`);
+    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`);
     let data = await response.json();
 
-    let responseTwo = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=${apiKey}`);
+    let responseTwo = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=${apiKey}`);
     let rating = await responseTwo.json();
 
-    let responseThree = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${apiKey}`);
+    let responseThree = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
     let cast = await responseThree.json();
 
-    showTvModal(data, rating, cast);
+    showMovieModal(data, rating, cast);
   }
 }
 
 //Close Modal
 function closeModal(e) {
-  const closeModal = e.target.parentElement.parentElement.parentElement.parentElement;
-  closeModal.classList.remove('showModal');
-  document.body.style.overflow = 'scroll';
-  footer.style.visibility = 'visible';
+  if (e.target.parentElement.classList.contains('closeModal')) {
+    modalContainer.classList.remove('showModal');
+    document.body.style.overflow = 'scroll';
+    footer.style.visibility = 'visible';
+  }
   e.preventDefault();
 }
 
@@ -212,21 +229,32 @@ function showTvModal(info, rating, cast) {
   modalContainer.classList.add('showModal');
   document.body.style.overflow = 'hidden';
   footer.style.visibility = 'hidden';
-  console.log(rating);
-  let html = `
+
+  try {
+    const tvRating = rating.results;
+    const findUSRating = tvRating?.find((item) => item.iso_3166_1 === 'US');
+    const runtime =
+      info.episode_run_time.length > 0
+        ? Math.floor(info.episode_run_time[0] / 60) + ' Hours' + ' & ' + (info.episode_run_time[0] % 60) + ' Minutes '
+        : `No episode runtime info available for this show`;
+    let html = `
     <div class="modalHeader">
       <h2>${info.name ? info.name : info.title}</h2>
       <button id="closeModal" class="closeModal"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="showTags">
-      <p><span>Seasons:</span> ${info.number_of_seasons}</p>
-      <p><span>Rating:</span> ${info.vote_average * 10}%</p>
-      <p><span>Runtime:</span> ${info.episode_run_time} minutes</p>
-      <p><span>Genre:</span>${info.genres.map((tag) => ` ${tag.name}`)}</p>
-      <p><span>Content Rating: </span>${rating.results[0] ? `${rating.results[0].rating}` : `No Rating Available For This Show`}</p>
+      <p><span>Seasons:</span> ${info.number_of_seasons > 0 ? info.number_of_seasons : `No Season Info Available for this show`}</p>
+      <p><span>Rating:</span> ${info.vote_average > 0 ? `${info.vote_average * 10}%` : 'No Rating Available for this show'}</p>
+      <p><span>Runtime:</span> ${runtime ? runtime : `No episode runtime info available for this show`}</p>
+      <p><span>Genre:</span>${info.genres[0] ? info.genres.map((tag) => ` ${tag.name}`) : ` No Genre Info Available For This Show`}</p>
+      <p><span>Content Rating: </span>${findUSRating ? findUSRating?.rating : `No Content Rating Available For This Show`}</p>
     </div>
     <div class="innerContent">
-      ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
+      ${
+        info.poster_path
+          ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>`
+          : '<p class="postError">No Poster Available For This Movie/Show</p>'
+      }
       <div class="innerContentInfo">
         <div class="description">
           <h3>Description:</h3>
@@ -235,15 +263,14 @@ function showTvModal(info, rating, cast) {
         <div class="cast">
           <h3>Cast:</h3>
           <div class="castContainer">
-            ${cast.cast
-              .map(
-                (actor) => `
-              <div class="castItem">
-                <p>${actor.name} as <span>${actor.character}</span></p> 
-              </div>
-            `
-              )
-              .join('')}
+          ${
+            cast.cast[0]
+              ? cast.cast
+                  .slice(0, 15)
+                  .map((actor) => `<div class="castItem"><p>${actor.name} as <span>${actor.character ? actor.character : `N/A</span>`}</p></div>`)
+                  .join('')
+              : `<p>No Cast Info Available</p>`
+          }
           </div>
         </div>
         <div class="creator">
@@ -253,39 +280,74 @@ function showTvModal(info, rating, cast) {
       </div>
     </div>
   `;
-  modalInfo.innerHTML = html;
+    modalInfo.innerHTML = html;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-{
-  /* <div class="innerContent">  
-      ${info.poster_path ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
-      <div class="innerContentInfo">
-        <div class="description">
-          <h3>Description:</h3>
-          <p>${info.overview ? info.overview : `No Overview Available For This Show`}</p>
-        </div>
+function showMovieModal(info, rating, cast) {
+  modalContainer.classList.add('showModal');
+  document.body.style.overflow = 'hidden';
+  footer.style.visibility = 'hidden';
+
+  try {
+    const movieRating = rating.results;
+    const findUSRating = movieRating?.find((item) => item.iso_3166_1 === 'US');
+    const ratingArray = findUSRating?.release_dates.filter((item) => item.certification);
+
+    const runtime = Math.floor(info.runtime / 60) + ' Hour ' + ' & ' + (info.runtime % 60) + ' Minutes ';
+
+    const director = cast.crew.find((member) => member.job === 'Director');
+    let html = `
+  <div class="modalHeader">
+    <h2>${info.name ? info.name : info.title}</h2>
+    <button id="closeModal" class="closeModal"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="showTags">
+    <p><span>Release Date:</span> ${info.release_date ? info.release_date : `No release date available for this movie`}</p>
+    <p><span>Rating:</span> ${info.vote_average > 0 ? `${info.vote_average * 10}%` : `No rating available for this movie`}</p>
+    <p><span>Runtime:</span> ${runtime ? runtime : `Runtime Not Available For This Movie.`}</p>
+    <p><span>Genre:</span>${info.genres[0] ? info.genres.map((tag) => ` ${tag.name}`) : ` No Genre Info Available For This Show`}</p>
+    <p><span>Rating: </span>${ratingArray?.length > 0 && ratingArray[0].certification !== 'NR' ? ratingArray[0].certification : `No content rating Available For This Movie`}</p>
+  </div>
+  <div class="innerContent">
+    ${
+      info.poster_path
+        ? `<img src="https://image.tmdb.org/t/p/original/${info.poster_path}" loading="lazy" alt="movie poster" class="poster"/>`
+        : '<p class="postError">No Poster Available For This Movie/Show</p>'
+    }
+    <div class="innerContentInfo">
+      <div class="description">
+        <h3>Description:</h3>
+        <p>${info.overview ? info.overview : `No Overview Available For This Movie`}</p>
+      </div>
+      <div class="cast">
+        <h3>Cast:</h3>
         <div class="castContainer">
-          <h3>Cast:</h3>
-        <div class="castInfoContainer">
-          ${cast.cast[0] ? cast.cast.map((tag) =>`
-                        <div class="castInfo">${
-                          tag.profile_path
-                            ? `<img src="https://image.tmdb.org/t/p/original/${tag.profile_path}" loading="lazy" alt="actor photo"/>`
-                            : '<h4 class="altText">No Picture Available For This Actor/Actress</h4>'
-                        } <h4>${tag.name} as <span>${tag.character}</span></h4></div>`
-                  )
-                  .join(' ')
-              : `<div class="castInfo"><p>No Cast Info Available For This Show</p></div>`
-          }
-        </div>
-        </div>
-        <div class="creator">
-          <h3>Created By:</h3>
-          <p>${info.created_by[0] ? info.created_by.map((tag) => `${tag.name}`).join(' & ') : `No Creator Info Available For This Show`}</p>
+        ${
+          cast.cast[0]
+            ? cast.cast
+                .slice(0, 15)
+                .map((actor) => `<div class="castItem"><p>${actor.name} as <span>${actor.character ? actor.character : `N/A</span>`}</p></div>`)
+                .join('')
+            : `<p>No Cast Info Available</p>`
+        }
         </div>
       </div>
-    </div> */
+      <div class="creator">
+        <h3>Directed By:</h3>
+        <p>${director ? director.name : 'No Director Info Available For This Movie'}</p>
+      </div>
+    </div>
+  </div>
+`;
+    modalInfo.innerHTML = html;
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 //Get Action Movies
 async function getActionMovies() {
   let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);
@@ -294,7 +356,7 @@ async function getActionMovies() {
   let html = '';
   results.forEach((item) => {
     html += `
-        <div class="movieItem" >
+        <div class="movieItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -315,7 +377,7 @@ async function getComedyMovies() {
   try {
     results.forEach((item) => {
       html += `
-        <div class="movieItem" >
+        <div class="movieItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -338,7 +400,7 @@ async function getHorrorMovies() {
   let html = '';
   results.forEach((item) => {
     html += `
-        <div class="movieItem" >
+        <div class="movieItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -356,7 +418,7 @@ async function getRomanceMovies() {
   let html = '';
   results.forEach((item) => {
     html += `
-        <div class="movieItem" >
+        <div class="movieItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>
@@ -374,7 +436,7 @@ async function getThrillerMovies() {
   let html = '';
   results.forEach((item) => {
     html += `
-        <div class="movieItem" >
+        <div class="movieItem" data-id="${item.id}">
             ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
             <h4>${item.title ? item.title : item.name}</h4>
         </div>

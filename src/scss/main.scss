@@ -259,6 +259,7 @@ body {
     overflow: hidden;
     margin-inline: 1rem;
     gap: 1rem;
+    padding-bottom: 3rem;
 
     //Search Item Styles
     .searchItem {
@@ -353,7 +354,7 @@ body {
 
       .showTags {
         padding-block: 1.5rem;
-        display: flex;
+        display: grid;
         gap: 0.5rem;
         p {
           text-transform: uppercase;
@@ -372,6 +373,12 @@ body {
           border-radius: 1rem;
           max-width: 50%;
           margin: 0 auto;
+        }
+
+        .postError {
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 400;
         }
 
         .innerContentInfo {
@@ -409,122 +416,13 @@ body {
           }
         }
       }
-
-      //   .innerContent {
-      //     display: flex;
-      //     flex-direction: column;
-      //     align-items: center;
-      //     gap: 1.5rem;
-      //     .poster {
-      //       padding-top: 1rem;
-      //       width: 50%;
-      //       border-radius: 1rem;
-      //     }
-
-      //     .innerContentInfo {
-      //       display: grid;
-
-      //       .description {
-      //         h3 {
-      //           font-size: 1.2rem;
-      //           text-transform: uppercase;
-      //           letter-spacing: 4px;
-      //           font-weight: 700;
-      //           padding-bottom: 0.5rem;
-      //           color: $secondaryColor;
-      //         }
-
-      //         p {
-      //           text-transform: uppercase;
-      //           letter-spacing: 2px;
-      //           font-weight: 400;
-      //         }
-      //       }
-
-      //       .castContainer {
-      //         margin-top: 1rem;
-      //         h3 {
-      //           font-size: 1.2rem;
-      //           text-transform: uppercase;
-      //           letter-spacing: 4px;
-      //           font-weight: 700;
-      //           color: $secondaryColor;
-      //         }
-      //         .castInfoContainer {
-      //           .castInfo {
-      //             display: flex;
-      //             align-items: center;
-      //             justify-content: center;
-      //             flex-direction: column;
-      //             flex: 0 0 100%;
-      //             max-width: 100%;
-      //             aspect-ratio: 16/9;
-      //             padding-block: 1rem;
-      //             gap: 1rem;
-
-      //             img {
-      //               object-fit: cover;
-      //               height: 300px;
-      //               width: 75%;
-      //               margin: 0 auto;
-      //               border-radius: 1rem;
-      //             }
-
-      //             .altText {
-      //               padding-block: 1rem;
-      //               border-bottom: solid 1px $secondaryColor;
-      //               margin-bottom: 1rem;
-      //             }
-
-      //             h4 {
-      //               text-transform: uppercase;
-      //               text-align: center;
-      //               letter-spacing: 4px;
-      //               word-wrap: break-word;
-      //               font-weight: 400;
-      //               padding-bottom: 0.5rem;
-
-      //               span {
-      //                 color: $secondaryColor;
-      //               }
-      //             }
-
-      //             p {
-      //               text-transform: uppercase;
-      //               letter-spacing: 4px;
-      //               font-weight: 400;
-      //               padding-bottom: 0.5rem;
-      //             }
-      //           }
-      //         }
-      //       }
-
-      //       .creator {
-      //         h3 {
-      //           font-size: 1.2rem;
-      //           text-transform: uppercase;
-      //           letter-spacing: 4px;
-      //           font-weight: 700;
-      //           padding-bottom: 0.5rem;
-      //           color: $secondaryColor;
-      //         }
-
-      //         p {
-      //           text-transform: uppercase;
-      //           letter-spacing: 4px;
-      //           font-weight: 400;
-      //           padding-bottom: 0.5rem;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
     }
   }
 
   //Show Modal
   .showModal {
     visibility: visible;
+    overflow: hidden;
     transition: all ease-in-out 1s;
   }
 
@@ -646,28 +544,6 @@ body {
       }
     }
 
-    // .modalContainer {
-    //   .modalContent {
-    //     .innerContent {
-    //       .innerContentInfo {
-    //         .castContainer {
-    //           .castInfoContainer {
-    //             // display: flex;
-    //             // flex-wrap: wrap;
-    //             .castInfo {
-    //               flex: 0 0 100%;
-
-    //               img {
-    //                 height: 300px;
-    //                 width: 30%;
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
     .searchContainer {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -719,10 +595,14 @@ body {
     }
 
     .modalContainer {
-      .showTags {
-        justify-content: space-around;
-      }
+      backdrop-filter: blur(10px);
       .modalContent {
+        width: 90vw;
+        height: 80vh;
+        border-radius: 1rem;
+        .showTags {
+          grid-template-columns: repeat(3, 1fr);
+        }
         .innerContent {
           grid-template-columns: repeat(2, 1fr);
           gap: 1.5rem;
@@ -792,73 +672,112 @@ body {
     }
 
     .modalContainer {
-      backdrop-filter: blur(10px);
-
-      .showTags {
-        grid-template-columns: repeat(4, 1fr);
-      }
       .modalContent {
-        width: 90vw;
-        height: 90vh;
-        border-radius: 1rem;
-        overflow: hidden;
+        .modalHeader {
+          padding-inline: 1rem;
+        }
+
+        .showTags {
+          grid-template-columns: repeat(3, 1fr);
+          padding-inline: 1rem;
+        }
+
         .innerContent {
-          grid-template-columns: 30% 70%;
+          grid-template-columns: 25% 75%;
           gap: 1.5rem;
 
           img {
             max-width: 75%;
           }
+
+          .description,
+          .cast,
+          .creator {
+            padding-inline: 1rem;
+          }
         }
       }
     }
-
-    // .modalContainer {
-    //   backdrop-filter: blur(10px);
-    //   .modalContent {
-    //     border-radius: 1rem;
-    //     width: 90vw;
-    //     height: 90vh;
-
-    //     .showTags {
-    //       grid-template-columns: repeat(3, 1fr);
-    //       place-items: left;
-    //     }
-
-    //     .innerContent {
-    //       .poster {
-    //         width: 15%;
-    //       }
-
-    //       .innerContentInfo {
-    //         .castContainer {
-    //           .castInfoContainer {
-    //             flex-wrap: wrap;
-    //             flex-direction: column;
-    //             align-items: center;
-    //             .castInfo {
-    //               img {
-    //                 height: 150px;
-    //                 width: 70%;
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 }
 
 //Styles for 1200px and higher
-@media only screen and (min-width: 1920px) {
-  // .modalContainer {
-  //   backdrop-filter: blur(10px);
-  //   .modalContent {
-  //     border-radius: 1rem;
-  //     width: 50vw;
-  //     height: 50vh;
-  //   }
-  // }
+@media only screen and (min-width: 2560px) {
+  body {
+    header {
+      margin-inline: 1.5rem;
+
+      .navContainer {
+        h1 {
+          font-weight: 700;
+          font-size: 2rem;
+        }
+
+        a {
+          font-size: 2rem;
+        }
+      }
+
+      .formSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .formContainer {
+          width: 50%;
+        }
+      }
+
+      .trending {
+        .trendingItem {
+          flex: 0 0 20%;
+          max-width: 20%;
+        }
+      }
+    }
+    .container {
+      margin-inline: 1.5rem;
+
+      .searchContainer {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .movieItemsContainer {
+        .movieItem {
+          flex: 0 0 20%;
+          max-width: 20%;
+        }
+      }
+
+      .tvItemsContainer {
+        .tvItem {
+          flex: 0 0 20%;
+          max-width: 20%;
+        }
+      }
+    }
+
+    .modalContainer {
+      .modalContent {
+        width: 50vw;
+        height: 70vh;
+        border-radius: 1rem;
+
+        .showTags {
+          grid-template-columns: repeat(5, 1fr);
+        }
+
+        .innerContent {
+          grid-template-columns: 30% 70%;
+
+          img {
+            max-width: 75%;
+          }
+
+          .innerContentInfo {
+            gap: 1.5rem;
+          }
+        }
+      }
+    }
+  }
 }

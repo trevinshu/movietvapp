@@ -264,6 +264,7 @@ body .searchHeading span {
 body .searchContainer {
   gap: 1rem;
   margin-inline: 1rem;
+  padding-bottom: 3rem;
   display: grid;
   overflow: hidden;
 }
@@ -361,7 +362,7 @@ body .modalContainer .modalContent .modalHeader .closeModal i {
 body .modalContainer .modalContent .showTags {
   gap: .5rem;
   padding-block: 1.5rem;
-  display: flex;
+  display: grid;
 }
 
 body .modalContainer .modalContent .showTags p {
@@ -382,6 +383,12 @@ body .modalContainer .modalContent .innerContent img {
   max-width: 50%;
   border-radius: 1rem;
   margin: 0 auto;
+}
+
+body .modalContainer .modalContent .innerContent .postError {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
 }
 
 body .modalContainer .modalContent .innerContent .innerContentInfo {
@@ -416,6 +423,7 @@ body .modalContainer .modalContent .innerContent .innerContentInfo .cast p {
 body .showModal {
   visibility: visible;
   transition: all 1s ease-in-out;
+  overflow: hidden;
 }
 
 body .movieItemsContainer {
@@ -550,8 +558,18 @@ body footer p {
     flex: 0 0 33%;
   }
 
-  body .modalContainer .showTags {
-    justify-content: space-around;
+  body .modalContainer {
+    backdrop-filter: blur(10px);
+  }
+
+  body .modalContainer .modalContent {
+    width: 90vw;
+    height: 80vh;
+    border-radius: 1rem;
+  }
+
+  body .modalContainer .modalContent .showTags {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   body .modalContainer .modalContent .innerContent {
@@ -606,28 +624,91 @@ body footer p {
     flex: 0 0 25%;
   }
 
-  body .modalContainer {
-    backdrop-filter: blur(10px);
+  body .modalContainer .modalContent .modalHeader {
+    padding-inline: 1rem;
   }
 
-  body .modalContainer .showTags {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  body .modalContainer .modalContent {
-    width: 90vw;
-    height: 90vh;
-    border-radius: 1rem;
-    overflow: hidden;
+  body .modalContainer .modalContent .showTags {
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: 1rem;
   }
 
   body .modalContainer .modalContent .innerContent {
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 25% 75%;
     gap: 1.5rem;
   }
 
   body .modalContainer .modalContent .innerContent img {
     max-width: 75%;
+  }
+
+  body .modalContainer .modalContent .innerContent .description, body .modalContainer .modalContent .innerContent .cast, body .modalContainer .modalContent .innerContent .creator {
+    padding-inline: 1rem;
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  body header {
+    margin-inline: 1.5rem;
+  }
+
+  body header .navContainer h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  body header .navContainer a {
+    font-size: 2rem;
+  }
+
+  body header .formSection {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  body header .formSection .formContainer {
+    width: 50%;
+  }
+
+  body header .trending .trendingItem {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
+
+  body .container {
+    margin-inline: 1.5rem;
+  }
+
+  body .container .searchContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  body .container .movieItemsContainer .movieItem, body .container .tvItemsContainer .tvItem {
+    max-width: 20%;
+    flex: 0 0 20%;
+  }
+
+  body .modalContainer .modalContent {
+    width: 50vw;
+    height: 70vh;
+    border-radius: 1rem;
+  }
+
+  body .modalContainer .modalContent .showTags {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  body .modalContainer .modalContent .innerContent {
+    grid-template-columns: 30% 70%;
+  }
+
+  body .modalContainer .modalContent .innerContent img {
+    max-width: 75%;
+  }
+
+  body .modalContainer .modalContent .innerContent .innerContentInfo {
+    gap: 1.5rem;
   }
 }
 

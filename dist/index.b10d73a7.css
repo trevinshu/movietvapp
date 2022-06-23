@@ -334,7 +334,7 @@ body .searchContainer .searchItem .emptyImgMsg {
 }
 
 body .searchContainer:last-of-type {
-  padding-bottom: 6rem;
+  padding-bottom: 5rem;
 }
 
 body .modalContainer {

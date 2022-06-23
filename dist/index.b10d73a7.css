@@ -292,7 +292,6 @@ body .showLoader svg {
 body .searchContainer {
   gap: 1rem;
   margin-inline: 1rem;
-  padding-bottom: 3rem;
   display: grid;
   overflow: hidden;
 }
@@ -335,7 +334,7 @@ body .searchContainer .searchItem .emptyImgMsg {
 }
 
 body .searchContainer:last-of-type {
-  padding-bottom: 4rem;
+  padding-bottom: 5rem;
 }
 
 body .modalContainer {

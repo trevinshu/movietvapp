@@ -85,6 +85,12 @@ input, button, textarea, select {
   background-color: #ffc300;
 }
 
+.light .showLoader svg {
+  fill: #001524;
+  width: 75px;
+  height: 75px;
+}
+
 .light .searchContainer .searchItem a, .light .headingContainer h2 {
   color: #001524;
 }
@@ -261,6 +267,28 @@ body .searchHeading span {
   color: #ffc300;
 }
 
+body .searchLoader {
+  display: none;
+}
+
+body .searchLoader img {
+  width: 3vw;
+}
+
+body .showLoader {
+  height: 50vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+body .showLoader svg {
+  fill: #ffc300;
+  width: 75px;
+  height: 75px;
+}
+
 body .searchContainer {
   gap: 1rem;
   margin-inline: 1rem;
@@ -430,7 +458,7 @@ body .movieItemsContainer {
   margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   display: flex;
   overflow: hidden;
 }
@@ -467,9 +495,10 @@ body .tvContainer:last-of-type {
 }
 
 body .tvItemsContainer {
+  margin-inline: 1rem;
   scroll-snap-type: x mandatory;
   gap: .75rem;
-  margin-inline: 1rem;
+  margin-bottom: .5rem;
   display: flex;
   overflow: hidden;
 }
@@ -559,7 +588,7 @@ body footer p {
   }
 
   body .modalContainer {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
   }
 
   body .modalContainer .modalContent {

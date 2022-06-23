@@ -22,10 +22,13 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const toggleColorScheme = document.getElementById('toggleColorScheme');
 const button = document.getElementById('colorModeIcon');
+const container = document.getElementById('container');
 let lightMode = localStorage.getItem('lightMode');
 const modalContainer = document.getElementById('modalContainer');
 let footer = document.getElementById('footer');
 const modalInfo = document.getElementById('modalContent');
+const msgContainer = document.getElementById('msgContainer');
+const searchLoader = document.getElementById('searchLoader');
 
 //Event Listeners
 trendingContainer.addEventListener('click', viewSelectedMovieTvItem);
@@ -43,6 +46,12 @@ romanceMovies.addEventListener('click', viewSelectedMovieItem);
 thrillerMovies.addEventListener('click', viewSelectedMovieItem);
 modalInfo.addEventListener('click', closeModal);
 searchContainer.addEventListener('click', viewSelectedMovieTvItem);
+
+document.addEventListener('DOMContentLoaded', function () {
+  searchContainer.remove();
+  msgContainer.remove();
+  // searchLoader.remove();
+});
 
 //Enable Light Mode
 const enableLightMode = () => {
@@ -79,7 +88,13 @@ toggleColorScheme.addEventListener('click', (e) => {
 //Handle Search Click
 searchBtn.addEventListener('click', (e) => {
   const input = searchInput.value;
-  getMoviesAndShowsBySearch(input);
+  removePreLoadedContent();
+  searchContainer.remove();
+  msgContainer.remove();
+  searchLoader.classList.add('showLoader');
+  setTimeout(function () {
+    getMoviesAndShowsBySearch(input);
+  }, 1000);
   e.preventDefault();
 });
 
@@ -89,6 +104,10 @@ async function getMoviesAndShowsBySearch(searchInput) {
   let data = await response.json();
   let results = data.results.slice(0, 10);
   const searchArray = results.filter((res) => res.known_for_department !== 'Directing' && res.known_for_department !== 'Acting');
+  container.append(msgContainer);
+  container.append(searchContainer);
+  searchLoader.classList.remove('showLoader');
+
   let html = '';
   try {
     if (data.total_results !== 0) {
@@ -112,7 +131,6 @@ async function getMoviesAndShowsBySearch(searchInput) {
     } else {
       resultMsg('searchHeading', `No Results Found For <span>${searchInput}</span>:`);
       searchContainer.innerHTML = '';
-      removePreLoadedContent();
     }
   } catch (err) {
     console.log(err);
@@ -121,9 +139,7 @@ async function getMoviesAndShowsBySearch(searchInput) {
 
 //Draw Message For Search Result
 function resultMsg(className, msg) {
-  let msgContainer = document.getElementById('msgContainer');
   let resultMsg = `<h2 class="${className}">${msg}</h2>`;
-
   msgContainer.innerHTML = resultMsg;
 }
 

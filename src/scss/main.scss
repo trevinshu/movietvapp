@@ -47,7 +47,13 @@ $otherColor: #fefefe;
       }
     }
   }
-
+  .showLoader {
+    svg {
+      fill: $primaryColor;
+      width: 75px;
+      height: 75px;
+    }
+  }
   .searchContainer {
     .searchItem {
       a {
@@ -76,11 +82,13 @@ $otherColor: #fefefe;
       }
     }
   }
+
   .modalContainer {
     .modalContent {
       background-color: $otherColor;
     }
   }
+
   footer {
     background-color: $otherColor;
 
@@ -253,6 +261,28 @@ body {
     }
   }
 
+  .searchLoader {
+    display: none;
+
+    img {
+      width: 3vw;
+    }
+  }
+
+  .showLoader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+
+    svg {
+      fill: $secondaryColor;
+      width: 75px;
+      height: 75px;
+    }
+  }
+
   //Search Container Styles
   .searchContainer {
     display: grid;
@@ -323,7 +353,7 @@ body {
       width: 100vw;
       overflow-y: scroll;
       padding: 1.5rem;
-
+      // border: solid 1px #ffc300;
       .modalHeader {
         display: flex;
         justify-content: space-between;
@@ -430,7 +460,7 @@ body {
   .movieItemsContainer {
     display: flex;
     margin-inline: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     gap: 0.75rem;
     scroll-snap-type: x mandatory;
     overflow: hidden;
@@ -473,6 +503,7 @@ body {
   .tvItemsContainer {
     display: flex;
     margin-inline: 1rem;
+    margin-bottom: 0.5rem;
     gap: 0.75rem;
     scroll-snap-type: x mandatory;
     overflow: hidden;
@@ -595,7 +626,7 @@ body {
     }
 
     .modalContainer {
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       .modalContent {
         width: 90vw;
         height: 90vh;

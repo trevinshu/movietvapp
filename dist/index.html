@@ -39,6 +39,14 @@
     </header>
     <main class="container" id="container">
       <!--Search Container Markup-->
+      <div class="searchLoader add" id="searchLoader">
+        <!-- <img src="img/3-dots-fade-white-36.svg" alt="Loading Image" /> -->
+        <svg width="36" height="36" fill="#fff" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="4" cy="12" r="3" opacity="1"><animate id="a" begin="0;b.end-0.25s" attributename="opacity" dur="0.75s" values="1;.2" fill="freeze"></animate></circle>
+          <circle cx="12" cy="12" r="3" opacity=".4"><animate begin="a.begin+0.15s" attributename="opacity" dur="0.75s" values="1;.2" fill="freeze"></animate></circle>
+          <circle cx="20" cy="12" r="3" opacity=".3"><animate id="b" begin="a.begin+0.3s" attributename="opacity" dur="0.75s" values="1;.2" fill="freeze"></animate></circle>
+        </svg>
+      </div>
       <div class="msgContainer" id="msgContainer"></div>
       <div class="searchContainer" id="searchContainer"></div>
       <div class="modalContainer" id="modalContainer">

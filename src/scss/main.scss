@@ -337,8 +337,8 @@ body {
   //Modal Styles
   .modalContainer {
     visibility: hidden;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     position: fixed;
     display: flex;
     align-items: center;
@@ -349,8 +349,8 @@ body {
 
     .modalContent {
       background-color: $primaryColor;
-      height: 100vh;
-      width: 100vw;
+      height: 100%;
+      width: 100%;
       overflow-y: scroll;
       padding: 1.5rem;
       padding-bottom: env(safe-area-inset-bottom);
@@ -629,8 +629,8 @@ body {
     .modalContainer {
       backdrop-filter: blur(12px);
       .modalContent {
-        width: 90vw;
-        height: 90vh;
+        width: 90%;
+        height: 90%;
         border-radius: 1rem;
         .showTags {
           grid-template-columns: repeat(3, 1fr);
@@ -790,8 +790,8 @@ body {
 
     .modalContainer {
       .modalContent {
-        width: 50vw;
-        height: 70vh;
+        width: 50%;
+        height: 70%;
         border-radius: 1rem;
 
         .showTags {

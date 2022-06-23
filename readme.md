@@ -7,6 +7,7 @@
 ## Screenshot:
 
 ## View Live:
+https://trevins-movie-tv-app.netlify.app/
 
 ## Languages, Tools, Techniques & Packages Used:
 

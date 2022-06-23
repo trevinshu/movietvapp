@@ -353,6 +353,7 @@ body {
       width: 100vw;
       overflow-y: scroll;
       padding: 1.5rem;
+      padding-bottom: env(safe-area-inset-bottom);
       // border: solid 1px #ffc300;
       .modalHeader {
         display: flex;

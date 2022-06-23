@@ -22,7 +22,8 @@ https://trevins-movie-tv-app.netlify.app/
 - NPM
 - The Movie Database API
 - Font Awesome
-- dotenv
+- dotenv 
+- Dark/Light Mode
 
 ## Author:
 

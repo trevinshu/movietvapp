@@ -722,7 +722,7 @@ function showTvModal(info, rating, cast) {
     </div>
     <div class="showTags">
       <p><span>Seasons:</span> ${info.number_of_seasons > 0 ? info.number_of_seasons : `No Season Info Available for this show`}</p>
-      <p><span>Rating:</span> ${info.vote_average > 0 ? `${info.vote_average * 10}%` : "No Rating Available for this show"}</p>
+      <p><span>Rating:</span> ${info.vote_average > 0 ? `${Math.round(info.vote_average * 10)}%` : "No Rating Available for this show"}</p>
       <p><span>Runtime:</span> ${runtime ? runtime : `No episode runtime info available for this show`}</p>
       <p><span>Genre:</span>${info.genres[0] ? info.genres.map((tag)=>` ${tag.name}`) : ` No Genre Info Available For This Show`}</p>
       <p><span>Content Rating: </span>${findUSRating ? findUSRating?.rating : `No Content Rating Available For This Show`}</p>
@@ -762,14 +762,20 @@ function showMovieModal(info, rating, cast) {
         const ratingArray = findUSRating?.release_dates.filter((item)=>item.certification);
         const runtime = Math.floor(info.runtime / 60) + " Hour " + " & " + info.runtime % 60 + " Minutes ";
         const director = cast.crew.find((member)=>member.job === "Director");
+        const options = {
+            dateStyle: "medium"
+        };
+        const stringDate = info.release_date;
+        const convertDate = new Date(stringDate);
+        const releaseDate = convertDate.toLocaleDateString("en-US", options);
         let html = `
   <div class="modalHeader">
     <h2>${info.name ? info.name : info.title}</h2>
     <button id="closeModal" class="closeModal"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <div class="showTags">
-    <p><span>Release Date:</span> ${info.release_date ? info.release_date : `No release date available for this movie`}</p>
-    <p><span>Rating:</span> ${info.vote_average > 0 ? `${info.vote_average * 10}%` : `No rating available for this movie`}</p>
+    <p><span>Release Date:</span> ${releaseDate ? releaseDate : `No release date available for this movie`}</p>
+    <p><span>Rating:</span> ${info.vote_average > 0 ? `${Math.round(info.vote_average * 10)}%` : `No rating available for this movie`}</p>
     <p><span>Runtime:</span> ${runtime ? runtime : `Runtime Not Available For This Movie.`}</p>
     <p><span>Genre:</span>${info.genres[0] ? info.genres.map((tag)=>` ${tag.name}`) : ` No Genre Info Available For This Show`}</p>
     <p><span>Rating: </span>${ratingArray?.length > 0 && ratingArray[0].certification !== "NR" ? ratingArray[0].certification : `No content rating Available For This Movie`}</p>

@@ -325,7 +325,7 @@ body .searchContainer .searchItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
-  padding-top: 1rem;
+  padding-block: 1rem;
   font-weight: 400;
 }
 

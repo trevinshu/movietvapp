@@ -1,0 +1,10 @@
+[production]
+> 1%
+ie 10
+
+[modern]
+last 2 chrome version
+last 2 firefox version
+
+[ssr]
+node 12

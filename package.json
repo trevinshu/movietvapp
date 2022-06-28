@@ -6,9 +6,7 @@
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html"
   },
-  "browsersList": {
-    "browsersList": "> 0.5%, last 2 versions, not dead"
-  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "Trevin Shu",
   "license": "ISC",
   "devDependencies": {

@@ -301,6 +301,7 @@ body .searchContainer .searchItem {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-block: 1rem;
   display: flex;
 }
 
@@ -325,7 +326,7 @@ body .searchContainer .searchItem h4 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 4px;
-  padding-block: 1rem;
+  padding-top: 1rem;
   font-weight: 400;
 }
 

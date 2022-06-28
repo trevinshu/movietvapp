@@ -297,6 +297,7 @@ body {
       align-items: center;
       flex-direction: column;
       aspect-ratio: 16/9;
+      margin-block: 1rem;
 
       img {
         border-radius: 1rem;
@@ -320,7 +321,7 @@ body {
         text-transform: uppercase;
         letter-spacing: 4px;
         font-weight: 400;
-        padding-block: 1rem;
+        padding-top: 1rem;
       }
 
       .emptyImgMsg {

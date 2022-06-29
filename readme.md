@@ -5,9 +5,11 @@
 - Movie App built with HTML, SCSS & Vanilla JavaScript that loads a list of movies/tv shows by genre and also allows an user to search for a movie/tv show.
 
 ## Screenshot:
+
 ![](src/img/project-mockup.png?raw=true)
 
 ## View Live:
+
 https://trevins-movie-tv-app.netlify.app/
 
 ## Languages, Tools, Techniques & Packages Used:
@@ -22,8 +24,9 @@ https://trevins-movie-tv-app.netlify.app/
 - NPM
 - The Movie Database API
 - Font Awesome
-- dotenv 
+- dotenv
 - Dark/Light Mode
+- postcss
 
 ## Author:
 

@@ -297,7 +297,7 @@ body {
       align-items: center;
       flex-direction: column;
       aspect-ratio: 16/9;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
 
       img {
         border-radius: 1rem;
@@ -327,10 +327,6 @@ body {
       .emptyImgMsg {
         padding-block: 1rem;
       }
-    }
-
-    &:last-of-type {
-      padding-bottom: 4.5rem;
     }
   }
 
@@ -610,6 +606,12 @@ body {
 
     .searchContainer {
       grid-template-columns: repeat(3, 1fr);
+
+      .searchItem {
+        &:last-of-type {
+          margin-bottom: 3.5rem;
+        }
+      }
     }
 
     .movieItemsContainer {
@@ -686,6 +688,12 @@ body {
 
       .searchContainer {
         grid-template-columns: repeat(4, 1fr);
+
+        .searchItem {
+          &:last-of-type {
+            margin-bottom: 5rem;
+          }
+        }
       }
 
       .movieItemsContainer {

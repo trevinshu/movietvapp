@@ -1,11 +1,18 @@
 require('dotenv').config();
 const apiKey = process.env.API_KEY;
+import './LightDarkModeToggler/themeSwitcher';
+import './handleSearch/handleSearch';
+import removePreLoadedContent from './removePreLoadedContent/removePreLoadedContent';
+import getTrendingMoviesAndTvShows from './getTrendingMoviesAndTvShows/getTrendingMoviesAndTvShows';
+import getActionMovies from './getActionMovies/getActionMovies';
+import getComedyMovies from './getComedyMovies/getComedyMovies';
+import arrowSlider from './arrowSlider/arrowSlider';
+import generateFooter from './footerContent/generateFooter';
+import getRealityTv from './getRealityTv/getRealityTv';
 
 //Get Containers/Items/Buttons
 const trendingContainer = document.getElementById('trending');
 const searchContainer = document.getElementById('searchContainer');
-const movieContainer = document.querySelectorAll('.movieContainer');
-const tvContainer = document.querySelectorAll('.tvContainer');
 const actionMovies = document.getElementById('actionMovies');
 const comedyMovies = document.getElementById('comedyMovies');
 const horrorMovies = document.getElementById('horrorMovies');
@@ -20,10 +27,7 @@ const kidsTv = document.getElementById('kidsTv');
 const realityTv = document.getElementById('realityTv');
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
-const toggleColorScheme = document.getElementById('toggleColorScheme');
-const button = document.getElementById('colorModeIcon');
 const container = document.getElementById('container');
-let lightMode = localStorage.getItem('lightMode');
 const modalContainer = document.getElementById('modalContainer');
 let footer = document.getElementById('footer');
 const modalInfo = document.getElementById('modalContent');
@@ -53,126 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // searchLoader.remove();
 });
 
-//Enable Light Mode
-const enableLightMode = () => {
-  document.body.classList.add('light');
-  button.classList.add('fa-moon');
-  button.classList.remove('fa-sun');
-  localStorage.setItem('lightMode', 'enabled');
-};
-
-//Disable Light Mode
-const disableLightMode = () => {
-  document.body.classList.remove('light');
-  button.classList.remove('fa-moon');
-  button.classList.add('fa-sun');
-  localStorage.setItem('lightMode', null);
-};
-
-//Load Light Mode If Enabled On Previous Visit
-if (lightMode === 'enabled') {
-  enableLightMode();
-}
-
-//Toggle Light Mode On/Off
-toggleColorScheme.addEventListener('click', (e) => {
-  lightMode = localStorage.getItem('lightMode');
-  if (lightMode !== 'enabled') {
-    enableLightMode();
-  } else {
-    disableLightMode();
-  }
-  e.preventDefault();
-});
-
-//Handle Search Click
-searchBtn.addEventListener('click', (e) => {
-  const input = searchInput.value;
-  removePreLoadedContent();
-  searchContainer.remove();
-  msgContainer.remove();
-  searchLoader.classList.add('showLoader');
-  setTimeout(function () {
-    getMoviesAndShowsBySearch(input);
-  }, 1000);
-  e.preventDefault();
-});
-
-//Draw Content For Search Input
-async function getMoviesAndShowsBySearch(searchInput) {
-  let response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchInput}&page=1`);
-  let data = await response.json();
-  let results = data.results.slice(0, 10);
-  const searchArray = results.filter((res) => res.known_for_department !== 'Directing' && res.known_for_department !== 'Acting');
-  container.append(msgContainer);
-  container.append(searchContainer);
-  searchLoader.classList.remove('showLoader');
-
-  let html = '';
-  try {
-    if (data.total_results !== 0) {
-      searchArray.forEach((item) => {
-        html += `
-      <div class="searchItem" data-id="${item.id}" data-type="${item.media_type}">
-          <a href="#" id="viewItem" class="viewItem">
-            ${
-              item.backdrop_path
-                ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>`
-                : '<h4 class="emptyImgMsg">No Poster Available For This Movie/Show</h4>'
-            }
-          </a>
-          <h4>${item.title ? item.title : item.name}</h4>
-      </div>
-    `;
-        resultMsg('searchHeading', `Search Results For <span>${searchInput}</span>:`);
-        searchContainer.innerHTML = html;
-        removePreLoadedContent();
-      });
-    } else {
-      resultMsg('searchHeading', `No Results Found For <span>${searchInput}</span>:`);
-      searchContainer.innerHTML = '';
-    }
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-//Draw Message For Search Result
-function resultMsg(className, msg) {
-  let resultMsg = `<h2 class="${className}">${msg}</h2>`;
-  msgContainer.innerHTML = resultMsg;
-}
-
-//Remove Pre-Loaded Content For Search Results
-function removePreLoadedContent() {
-  movieContainer.forEach((movieContainers) => {
-    movieContainers.remove();
-  });
-
-  tvContainer.forEach((tvContainers) => {
-    tvContainers.remove();
-  });
-}
-
-//Get Trending Movies
-async function getTrendingMovies() {
-  let response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`);
-  let data = await response.json();
-  let results = data.results.slice(0, 10);
-  let html = '';
-  results.forEach((item) => {
-    html += `
-        <div class="trendingItem" data-id="${item.id}" data-type="${item.media_type}">
-            <a href="#" id="viewItem" class="viewItem">
-            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie/Show</h4>'}
-            </a>
-            <h4>${item.title ? item.title : item.name}</h4>
-        </div>
-     `;
-    trendingContainer.innerHTML = html;
-  });
-}
-getTrendingMovies();
+arrowSlider();
+getTrendingMoviesAndTvShows(apiKey);
+getActionMovies(apiKey);
+getComedyMovies(apiKey);
+getRealityTv(apiKey);
+generateFooter();
 
 //Function to View Selected Movie/TV Show
 function viewSelectedMovieTvItem(e) {
@@ -370,50 +260,6 @@ function showMovieModal(info, rating, cast) {
   }
 }
 
-//Get Action Movies
-async function getActionMovies() {
-  let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=28&without_genres=35%2C%2027%2C%2010749%2C%2053`);
-  let data = await response.json();
-  let results = data.results.slice(0, 10);
-  let html = '';
-  results.forEach((item) => {
-    html += `
-        <div class="movieItem" data-id="${item.id}">
-            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
-            <h4>${item.title ? item.title : item.name}</h4>
-        </div>
-     `;
-    actionMovies.innerHTML = html;
-  });
-}
-getActionMovies();
-
-//Get Comedy Movies
-async function getComedyMovies() {
-  let response = await fetch(`
-  https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=35&without_genres=28%2C%2027%2C%2010749%2C%2053`);
-  let data = await response.json();
-  let results = data.results.slice(0, 10);
-  let html = '';
-
-  try {
-    results.forEach((item) => {
-      html += `
-        <div class="movieItem" data-id="${item.id}">
-            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This Movie</h4>'}
-            <h4>${item.title ? item.title : item.name}</h4>
-        </div>
-     `;
-      comedyMovies.innerHTML = html;
-    });
-  } catch (error) {
-    if (results === null) {
-      console.log('No Results Found');
-    }
-  }
-}
-getComedyMovies();
-
 //Get Horror Movies
 async function getHorrorMovies() {
   let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=27&without_genres=28%2C%2035%2C%2010749%2C%2053`);
@@ -587,132 +433,3 @@ async function getKidsTv() {
   });
 }
 getKidsTv();
-
-//Get Reality TV
-async function getRealityTv() {
-  let response = await fetch(
-    `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=10764&without_genres=10759%2C%2035%2C%2099%2C%2018%2C%2010751%2C10762%2C10767`
-  );
-  let data = await response.json();
-  let results = data.results.slice(0, 10);
-  let html = '';
-  results.forEach((item) => {
-    html += `
-        <div class="tvItem" data-id="${item.id}">
-            ${item.backdrop_path ? `<img src="https://image.tmdb.org/t/p/original/${item.backdrop_path}" loading="lazy" alt="movie poster"/>` : '<h4>No Poster Available For This TV Show</h4>'}
-            <h4>${item.title ? item.title : item.name}</h4>
-        </div>
-     `;
-    realityTv.innerHTML = html;
-  });
-}
-getRealityTv();
-
-//Arrow Btn Scroll Carousel
-function carousel() {
-  let leftBtn = document.querySelectorAll('#leftButton');
-  let rightBtn = document.querySelectorAll('#rightButton');
-
-  leftBtn.forEach((leftButton) =>
-    leftButton.addEventListener('click', (e) => {
-      const leftParent = e.target.parentElement;
-      if (leftParent.dataset.button === 'trending left') {
-        e.preventDefault();
-        trendingContainer.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'action left') {
-        e.preventDefault();
-        actionMovies.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'comedy left') {
-        e.preventDefault();
-        comedyMovies.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'horror left') {
-        e.preventDefault();
-        horrorMovies.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'romance left') {
-        e.preventDefault();
-        romanceMovies.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'thriller left') {
-        e.preventDefault();
-        thrillerMovies.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'action tv left') {
-        e.preventDefault();
-        actionTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'comedy tv left') {
-        e.preventDefault();
-        comedyTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'documentary tv left') {
-        e.preventDefault();
-        documentaryTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'drama tv left') {
-        e.preventDefault();
-        dramaTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'family tv left') {
-        e.preventDefault();
-        familyTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'kids tv left') {
-        e.preventDefault();
-        kidsTv.scrollLeft -= window.outerWidth;
-      } else if (leftParent.dataset.button === 'reality tv left') {
-        e.preventDefault();
-        realityTv.scrollLeft -= window.outerWidth;
-      }
-    })
-  );
-
-  rightBtn.forEach((rightButton) =>
-    rightButton.addEventListener('click', (e) => {
-      const rightParent = e.target.parentElement;
-      if (rightParent.dataset.button === 'trending right') {
-        trendingContainer.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'action right') {
-        e.preventDefault();
-        actionMovies.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'comedy right') {
-        e.preventDefault();
-        comedyMovies.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'horror right') {
-        e.preventDefault();
-        horrorMovies.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'romance right') {
-        e.preventDefault();
-        romanceMovies.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'thriller right') {
-        e.preventDefault();
-        thrillerMovies.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'action tv right') {
-        e.preventDefault();
-        actionTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'comedy tv right') {
-        e.preventDefault();
-        comedyTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'documentary tv right') {
-        e.preventDefault();
-        documentaryTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'drama tv right') {
-        e.preventDefault();
-        dramaTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'family tv right') {
-        e.preventDefault();
-        familyTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'kids tv right') {
-        e.preventDefault();
-        kidsTv.scrollLeft += window.outerWidth;
-      } else if (rightParent.dataset.button === 'reality tv right') {
-        e.preventDefault();
-        realityTv.scrollLeft += window.outerWidth;
-      }
-    })
-  );
-}
-carousel();
-
-//Generate Footer Content
-function generateFooter() {
-  let date = new Date().getFullYear();
-
-  footer.innerHTML = `
-      <p>Designed & Developed by Trevin Shu &copy; ${date}</p>
-    `;
-}
-
-generateFooter();
